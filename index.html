@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>បន្ទប់ពិគ្រោះ និងព្យាបាលជំងឺ - ឡាមស៊ីលីន</title>
+<title>បន្ទប់ពិគ្រោះ និងព្យាបាលជំងឺ - ឡាមស៊ីលីន (Firebase Sync)</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet"/>
 <style>
@@ -52,6 +52,8 @@ body{
 ::-webkit-scrollbar-track{background:var(--gray-100)}
 ::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:99px}
 ::-webkit-scrollbar-thumb:hover{background:var(--teal)}
+
+/* ===== LOGIN SCREEN ===== */
 .login-screen{
   position:fixed;inset:0;
   background:linear-gradient(135deg,var(--navy) 0%,#0f3460 50%,#1a1a2e 100%);
@@ -103,7 +105,7 @@ body{
 .login-field{margin-bottom:16px;position:relative}
 .login-field label{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,.65);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px}
 .login-field .fi{
-  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  position:absolute;left:14px;top:38px;
   color:rgba(255,255,255,.35);font-size:15px;pointer-events:none;
   transition:.2s;
 }
@@ -144,6 +146,8 @@ body{
   box-shadow:0 10px 28px rgba(13,148,136,.55);
   background:linear-gradient(135deg,#0b8276,var(--teal));
 }
+
+/* ===== APP WRAPPER ===== */
 .app-wrapper{max-width:1200px;margin:0 auto;padding:24px 20px}
 .top-bar{
   background:var(--navy);
@@ -165,7 +169,7 @@ body{
 }
 .brand-text h1{font-size:17px;font-weight:700;color:white;letter-spacing:.3px}
 .brand-text p{font-size:12px;color:rgba(255,255,255,.45);letter-spacing:.2px}
-.top-bar-user{display:flex;align-items:center;gap:12px}
+.top-bar-user{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .user-chip{
   display:flex;align-items:center;gap:8px;
   background:rgba(255,255,255,.08);
@@ -174,10 +178,14 @@ body{
   color:rgba(255,255,255,.75);font-size:13px;
 }
 .user-chip i{color:var(--teal-light)}
+
+/* ===== TABS ===== */
 .tabs-nav{
   display:flex;gap:8px;margin-bottom:20px;
   background:white;padding:6px;border-radius:var(--radius-lg);
   box-shadow:var(--shadow-sm);
+  flex-wrap:nowrap;
+  overflow-x:auto;
 }
 .tab-btn{
   flex:1;padding:11px 16px;border:none;border-radius:var(--radius);
@@ -186,6 +194,7 @@ body{
   color:var(--gray-500);
   display:flex;align-items:center;justify-content:center;gap:8px;
   transition:all .25s;
+  white-space:nowrap;
 }
 .tab-btn:hover{background:var(--gray-50);color:var(--gray-700)}
 .tab-btn.active{
@@ -194,7 +203,9 @@ body{
   box-shadow:var(--shadow);
 }
 .tab-btn.active .tab-dot{background:var(--teal-light)}
-.tab-dot{width:8px;height:8px;border-radius:50%;background:var(--gray-300);transition:.25s}
+.tab-dot{width:8px;height:8px;border-radius:50%;background:var(--gray-300);transition:.25s;flex-shrink:0}
+
+/* ===== STATS DASHBOARD ===== */
 .stats-row{
   display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;
 }
@@ -221,6 +232,8 @@ body{
 .stat-card.r .stat-icon{background:#fee2e2;color:var(--red)}
 .stat-val{font-size:26px;font-weight:700;color:var(--navy);line-height:1}
 .stat-label{font-size:12px;color:var(--gray-500);margin-top:3px}
+
+/* ===== CARDS & FORMS ===== */
 .card{
   background:white;border-radius:var(--radius-lg);
   box-shadow:var(--shadow-sm);overflow:hidden;margin-bottom:20px;
@@ -239,7 +252,6 @@ body{
 .card-header h2{font-size:16px;font-weight:700;color:white;letter-spacing:.3px}
 .card-header p{font-size:12px;color:rgba(255,255,255,.5);margin-top:1px}
 .card-body{padding:26px}
-.form-section{margin-bottom:28px}
 .section-label{
   display:flex;align-items:center;gap:10px;
   font-size:13px;font-weight:700;
@@ -247,13 +259,6 @@ body{
   text-transform:uppercase;letter-spacing:.8px;
   margin-bottom:18px;padding-bottom:10px;
   border-bottom:2px solid var(--teal-faint);
-}
-.section-label i{font-size:14px}
-.section-num{
-  width:22px;height:22px;border-radius:50%;
-  background:var(--teal);color:white;
-  font-size:11px;font-weight:800;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px 22px}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 20px}
@@ -281,7 +286,8 @@ body{
   box-shadow:0 0 0 3px rgba(13,148,136,.15);
 }
 .field textarea{resize:vertical;min-height:70px;line-height:1.6}
-.field select{cursor:pointer}
+
+/* ===== VITAL SIGNS ===== */
 .vital-grid{
   display:grid;grid-template-columns:repeat(5,1fr);gap:12px;
   background:linear-gradient(135deg,#f0fdfa,#f8fafc);
@@ -307,16 +313,15 @@ body{
   color:var(--navy);padding:4px 4px 6px;
   outline:none;transition:.2s;
 }
-.vital-card input:focus{border-color:var(--teal);background:transparent}
 .vital-card .unit{font-size:10px;color:var(--gray-400);margin-top:4px}
+
+/* ===== WOUND MAP ===== */
 .wound-wrapper{
   background:linear-gradient(135deg,var(--gray-50),white);
   border:2px dashed var(--gray-200);
   border-radius:var(--radius-lg);padding:24px;
   text-align:center;
-  transition:border-color .2s;
 }
-.wound-wrapper:hover{border-color:var(--teal)}
 .wound-canvas-container{
   position:relative;display:inline-block;cursor:crosshair;
   max-width:100%;
@@ -326,26 +331,11 @@ body{
   display:block;margin:0 auto;
   filter:drop-shadow(0 4px 12px rgba(0,0,0,.08));
 }
-.wound-canvas-container canvas{
-  position:absolute;top:0;left:0;
-  width:100%;height:100%;cursor:crosshair;
-}
-.wound-tip{
-  font-size:12px;color:var(--gray-400);
-  display:flex;align-items:center;justify-content:center;gap:6px;
-  margin-top:12px;
-}
-.wound-count{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--teal-faint);
-  border:1px solid rgba(13,148,136,.2);
-  color:var(--teal);
-  font-size:12px;font-weight:700;
-  padding:4px 12px;border-radius:99px;
-  margin-top:10px;
-}
+
+/* ===== SIGNATURES ===== */
 .sig-bar{
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:14px;
   padding:20px 24px;
   background:var(--gray-50);
   border-radius:var(--radius);
@@ -359,7 +349,6 @@ body{
   text-align:center;font-family:inherit;font-size:14px;padding:2px 6px;
   outline:none;transition:.2s;
 }
-.sig-date input:focus{border-color:var(--teal)}
 .sig-doctor{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--gray-600)}
 .sig-doctor input{
   border:none;border-bottom:2px solid var(--gray-300);
@@ -367,7 +356,8 @@ body{
   font-family:inherit;font-size:14px;padding:2px 8px;
   outline:none;transition:.2s;width:180px;
 }
-.sig-doctor input:focus{border-color:var(--teal)}
+
+/* ===== BUTTONS ===== */
 .btn-row{
   display:flex;align-items:center;justify-content:center;
   flex-wrap:wrap;gap:12px;padding:24px 0 8px;
@@ -400,8 +390,10 @@ body{
 .btn-ghost:hover{background:var(--gray-50);border-color:var(--gray-300);color:var(--gray-800)}
 .btn-sm{padding:7px 16px;font-size:13px}
 .btn-xs{padding:5px 12px;font-size:12px;border-radius:8px}
-.search-bar{display:flex;gap:10px;align-items:center;margin-bottom:18px}
-.search-wrap{flex:1;position:relative}
+
+/* ===== TABLE LAYOUTS ===== */
+.search-bar{display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.search-wrap{flex:1;position:relative;min-width:240px}
 .search-wrap input{
   width:100%;padding:10px 14px 10px 40px;
   border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);
@@ -410,17 +402,26 @@ body{
 }
 .search-wrap input:focus{border-color:var(--teal);background:white;box-shadow:0 0 0 3px rgba(13,148,136,.12)}
 .search-wrap i{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--gray-400)}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 .patient-table{width:100%;border-collapse:collapse}
 .patient-table thead th{
   background:var(--gray-50);padding:10px 14px;
   text-align:left;font-size:11px;font-weight:700;
   color:var(--gray-500);text-transform:uppercase;letter-spacing:.7px;
   border-bottom:2px solid var(--gray-200);
+  white-space:nowrap;
 }
 .patient-table tbody tr{border-bottom:1px solid var(--gray-100);transition:background .15s}
 .patient-table tbody tr:hover{background:var(--gray-50)}
-.patient-table td{padding:13px 14px;font-size:13.5px;vertical-align:middle}
+.patient-table td{padding:13px 14px;font-size:13.5px;vertical-align:middle;white-space:nowrap}
 .patient-table td:last-child{text-align:right}
+
+/* ===== BADGES ===== */
 .badge{
   display:inline-flex;align-items:center;
   padding:3px 10px;border-radius:99px;
@@ -431,63 +432,8 @@ body{
 .badge-gold{background:#fef3c7;color:#b45309}
 .badge-red{background:#fee2e2;color:var(--red-dark)}
 .badge-purple{background:#ede9fe;color:#6d28d9}
-.badge-green{background:#d1fae5;color:var(--green-dark)}
-.empty-state{text-align:center;padding:60px 20px;color:var(--gray-400)}
-.empty-state i{font-size:48px;margin-bottom:14px;display:block;opacity:.35}
-.empty-state p{font-size:15px;margin-bottom:4px;color:var(--gray-500)}
-.empty-state small{font-size:13px}
-.pagination{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:16px;border-top:1px solid var(--gray-100);margin-top:4px;
-}
-.page-info{font-size:13px;color:var(--gray-500)}
-.page-btns{display:flex;gap:6px}
-.page-btn{
-  width:32px;height:32px;border:1.5px solid var(--gray-200);
-  background:white;border-radius:8px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;color:var(--gray-600);transition:.15s;
-}
-.page-btn:hover{border-color:var(--teal);color:var(--teal)}
-.page-btn.active{background:var(--teal);border-color:var(--teal);color:white}
-[data-tip]{position:relative}
-[data-tip]:hover::after{
-  content:attr(data-tip);
-  position:absolute;bottom:calc(100%+6px);left:50%;transform:translateX(-50%);
-  background:var(--navy);color:white;
-  font-size:11px;white-space:nowrap;padding:4px 10px;
-  border-radius:6px;pointer-events:none;z-index:99;
-  box-shadow:var(--shadow);
-}
-@media print{
-  body{background:white;padding:0}
-  .top-bar,.tabs-nav,.stats-row,.btn-row,.patient-list-section,.search-bar,.pagination,
-  .returning-banner,.visit-indicator,.history-actions{display:none!important}
-  .card{box-shadow:none;border:1px solid #ddd}
-  .card-header{background:#0d9488!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .wound-wrapper{border:1px solid #ddd}
-}
-@media(max-width:900px){
-  .stats-row{grid-template-columns:repeat(2,1fr)}
-  .vital-grid{grid-template-columns:repeat(3,1fr)}
-  .grid-4{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:620px){
-  .grid-2,.grid-3{grid-template-columns:1fr}
-  .vital-grid{grid-template-columns:repeat(2,1fr)}
-  .stats-row{grid-template-columns:1fr 1fr}
-  .top-bar{flex-direction:column;gap:12px;top:0;border-radius:0}
-  .app-wrapper{padding:12px}
-  .tabs-nav{flex-wrap:wrap}
-  .patient-table{font-size:12px}
-}
-.fade-in{animation:fadeUp .4s ease both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.stagger-1{animation-delay:.05s}
-.stagger-2{animation-delay:.1s}
-.stagger-3{animation-delay:.15s}
-.stagger-4{animation-delay:.2s}
-.subtitle { color: #7f8c8d; margin-bottom: 20px; font-style: italic; padding-left: 21px; }
+
+/* ===== PARAM CARD (BLOOD TEST) ===== */
 .param-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -544,183 +490,67 @@ body{
 .param-card .param-status.high { background: #fee2e2; color: var(--red-dark); }
 .param-card .param-status.low { background: #fef3c7; color: #b45309; }
 .param-card .param-status.none { color: var(--gray-400); background: var(--gray-50); }
-.cat-tabs { display: flex; gap: 6px; flex-wrap: wrap; padding: 4px 0; }
-.cat-tab {
-  padding: 7px 14px;
-  border: 1.5px solid var(--gray-200);
-  background: white;
-  border-radius: 99px;
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--gray-600);
-  cursor: pointer;
-  transition: all 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.cat-tab:hover { border-color: var(--teal); color: var(--teal); }
-.cat-tab.active {
-  background: linear-gradient(135deg, var(--teal), var(--teal-light));
+
+/* ===== FIREBASE BRIDGE BAR ===== */
+.bridge-container {
+  background: linear-gradient(135deg, var(--navy2), #111a2e);
+  border: 1.5px solid rgba(13, 148, 136, 0.4);
+  border-radius: var(--radius);
+  padding: 16px 20px;
   color: white;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: var(--shadow);
+}
+.bridge-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.bridge-badge {
+  background: var(--teal);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+.bridge-actions {
+  display: flex;
+  gap: 8px;
+}
+.btn-bridge {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+.btn-bridge:hover {
+  background: var(--teal);
   border-color: var(--teal);
-  box-shadow: 0 2px 8px rgba(13,148,136,.3);
 }
-/* ===== PATIENT PICKER (BLOOD TEST) ===== */
-.patient-picker-trigger{
-  display:flex;align-items:center;gap:10px;
-  padding:11px 14px;
-  border:1.5px solid var(--teal);
-  border-radius:var(--radius-sm);
-  background:linear-gradient(135deg,var(--teal-faint),white);
-  cursor:pointer;
-  transition:.2s;
-  font-family:inherit;
-  font-size:13.5px;
-  color:var(--navy);
-  width:100%;
-  text-align:left;
+.btn-bridge.upload {
+  background: linear-gradient(135deg, var(--teal), var(--teal-light));
+  border-color: transparent;
 }
-.patient-picker-trigger:hover{background:var(--teal);color:white}
-.patient-picker-trigger:hover .pp-icon{background:white;color:var(--teal)}
-.patient-picker-trigger .pp-icon{
-  width:30px;height:30px;border-radius:8px;
-  background:linear-gradient(135deg,var(--teal),var(--teal-light));
-  color:white;display:flex;align-items:center;justify-content:center;
-  font-size:13px;flex-shrink:0;
+.btn-bridge.upload:hover {
+  filter: brightness(1.15);
 }
-.patient-picker-trigger .pp-text{flex:1;min-width:0}
-.patient-picker-trigger .pp-name{font-weight:700;line-height:1.3}
-.patient-picker-trigger .pp-id{font-size:11px;opacity:.7;line-height:1.3}
-.patient-picker-trigger.has-patient{
-  background:linear-gradient(135deg,#dcfce7,#f0fdf4);
-  border-color:var(--green);
-}
-.patient-picker-trigger.has-patient .pp-icon{background:var(--green)}
-.patient-picker-trigger .pp-remove{
-  width:24px;height:24px;border-radius:50%;
-  background:rgba(239,68,68,.15);color:var(--red);
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;cursor:pointer;border:none;
-  transition:.2s;
-}
-.patient-picker-trigger .pp-remove:hover{background:var(--red);color:white}
 
-/* ===== PATIENT PICKER MODAL ===== */
-.picker-search{
-  position:sticky;top:0;background:white;
-  padding:0 0 14px;z-index:5;
-}
-.picker-results{
-  max-height:60vh;overflow-y:auto;
-  border:1px solid var(--gray-200);border-radius:var(--radius);
-}
-.picker-item{
-  display:flex;align-items:center;gap:14px;
-  padding:12px 16px;
-  border-bottom:1px solid var(--gray-100);
-  cursor:pointer;
-  transition:.15s;
-}
-.picker-item:last-child{border-bottom:none}
-.picker-item:hover{background:var(--teal-faint)}
-.picker-item.selected{background:var(--teal-faint);border-left:3px solid var(--teal)}
-.picker-item .pi-avatar{
-  width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,var(--teal),var(--teal-light));
-  color:white;display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:14px;flex-shrink:0;
-}
-.picker-item .pi-info{flex:1;min-width:0}
-.picker-item .pi-name{font-size:14px;font-weight:700;color:var(--navy)}
-.picker-item .pi-id{font-size:12px;color:var(--gray-500);margin-top:2px}
-.picker-item .pi-meta{font-size:11px;color:var(--gray-400);margin-top:2px}
-.picker-item .pi-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  background:var(--teal-faint);color:var(--teal);
-  font-size:11px;font-weight:700;
-  padding:3px 9px;border-radius:99px;
-  margin-top:4px;
-}
-.picker-item .pi-badge.gold{background:#fef3c7;color:#b45309}
-.picker-item .pi-check{
-  width:24px;height:24px;border-radius:50%;
-  background:var(--teal);color:white;
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;flex-shrink:0;
-}
-.picker-empty{
-  text-align:center;padding:40px 20px;color:var(--gray-400);
-}
-.picker-empty i{font-size:36px;margin-bottom:10px;display:block;opacity:.35}
-
-/* ===== LINKED BLOOD TEST INDICATOR ===== */
-.linked-tests-strip{
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  background:linear-gradient(135deg,#f0fdfa,#f8fafc);
-  border:1.5px solid var(--teal-faint);
-  border-radius:var(--radius);
-  padding:12px 16px;margin-bottom:16px;
-}
-.linked-tests-strip .lts-label{font-size:12px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.4px}
-.linked-tests-strip .lts-count{font-size:18px;font-weight:700;color:var(--teal)}
-.linked-tests-strip .lts-btn{
-  margin-left:auto;
-  padding:6px 14px;border-radius:8px;
-  background:linear-gradient(135deg,var(--teal),var(--teal-light));
-  color:white;border:none;cursor:pointer;
-  font-family:inherit;font-size:12px;font-weight:700;
-  display:inline-flex;align-items:center;gap:6px;
-  transition:.2s;
-}
-.linked-tests-strip .lts-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(13,148,136,.4)}
-
-/* ===== BLOOD TEST MINI CARDS ===== */
-.bt-mini-card{
-  background:white;
-  border:1.5px solid var(--gray-200);
-  border-radius:var(--radius);
-  padding:14px 16px;
-  margin-bottom:10px;
-  transition:.2s;
-  cursor:pointer;
-}
-.bt-mini-card:hover{border-color:var(--teal);box-shadow:var(--shadow-sm)}
-.bt-mini-head{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:8px;margin-bottom:8px;
-}
-.bt-mini-cat{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--teal-faint);color:var(--teal);
-  font-size:11px;font-weight:700;
-  padding:3px 10px;border-radius:99px;
-}
-.bt-mini-date{font-size:12px;color:var(--gray-500);display:inline-flex;align-items:center;gap:4px}
-.bt-mini-summary{
-  display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;
-  padding-top:8px;border-top:1px dashed var(--gray-200);
-}
-.bt-mini-param{
-  font-size:10px;
-  padding:3px 8px;border-radius:6px;
-  background:var(--gray-50);
-  color:var(--gray-600);
-  font-weight:600;
-}
-.bt-mini-param.high{background:#fee2e2;color:var(--red-dark)}
-.bt-mini-param.low{background:#fef3c7;color:#b45309}
-.bt-mini-param.normal{background:#d1fae5;color:var(--green-dark)}
-.bt-mini-foot{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-top:10px;padding-top:8px;
-  border-top:1px solid var(--gray-100);
-  font-size:12px;
-}
-.bt-mini-foot .bt-doctor{color:var(--gray-600);display:inline-flex;align-items:center;gap:4px}
-.bt-mini-foot .bt-actions{display:flex;gap:6px}
-
+/* ===== RETURNING PATIENT BANNER ===== */
 .returning-banner{
   background:linear-gradient(135deg,#fff7ed,#ffedd5);
   border:1.5px solid #fb923c;
@@ -729,6 +559,7 @@ body{
   margin-bottom:18px;
   display:flex;align-items:center;gap:14px;
   animation:slideIn .35s ease both;
+  flex-wrap:wrap;
 }
 .returning-banner.new-patient{
   background:linear-gradient(135deg,#f0fdf4,#dcfce7);
@@ -742,7 +573,7 @@ body{
   box-shadow:0 4px 12px rgba(251,146,60,.4);
 }
 .returning-banner.new-patient .rb-icon{background:var(--green);box-shadow:0 4px 12px rgba(16,185,129,.4)}
-.returning-banner .rb-body{flex:1}
+.returning-banner .rb-body{flex:1;min-width:200px}
 .returning-banner .rb-title{font-size:14px;font-weight:700;color:#9a3412;margin-bottom:2px}
 .returning-banner.new-patient .rb-title{color:#065f46}
 .returning-banner .rb-sub{font-size:12px;color:#7c2d12}
@@ -760,6 +591,7 @@ body{
 .returning-banner.new-patient .rb-btn{color:#065f46;border-color:var(--green)}
 .returning-banner.new-patient .rb-btn:hover{background:var(--green);color:white}
 @keyframes slideIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
 .visit-indicator{
   display:inline-flex;align-items:center;gap:6px;
   background:linear-gradient(135deg,var(--teal),var(--teal-light));
@@ -772,6 +604,8 @@ body{
   background:linear-gradient(135deg,#f59e0b,#fb923c);
   box-shadow:0 2px 8px rgba(245,158,11,.35);
 }
+
+/* ===== HISTORY SYSTEM ===== */
 .history-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
@@ -810,355 +644,8 @@ body{
 .history-card .hc-stat{text-align:center}
 .history-card .hc-stat-val{font-size:18px;font-weight:700;color:var(--teal);line-height:1}
 .history-card .hc-stat-label{font-size:10px;color:var(--gray-500);margin-top:2px;text-transform:uppercase;letter-spacing:.4px}
-.history-card .hc-stat.returning .hc-stat-val{color:#f59e0b}
-.history-card .hc-stat.recent .hc-stat-val{color:var(--green)}
-.timeline{position:relative;padding-left:30px}
-.timeline::before{
-  content:'';position:absolute;left:11px;top:8px;bottom:8px;
-  width:2px;background:linear-gradient(180deg,var(--teal) 0%,var(--teal-faint) 100%);
-}
-.tl-item{position:relative;margin-bottom:20px}
-.tl-item::before{
-  content:'';position:absolute;left:-23px;top:18px;
-  width:14px;height:14px;border-radius:50%;
-  background:white;border:3px solid var(--teal);
-  box-shadow:0 0 0 4px rgba(13,148,136,.15);
-}
-.tl-item.latest::before{
-  background:var(--teal);
-  box-shadow:0 0 0 4px rgba(13,148,136,.25),0 0 0 8px rgba(13,148,136,.1);
-}
-.tl-item.latest-2::before{
-  background:#f59e0b;border-color:#f59e0b;
-  box-shadow:0 0 0 4px rgba(245,158,11,.15);
-}
-.tl-card{
-  background:white;
-  border:1.5px solid var(--gray-200);
-  border-radius:var(--radius);
-  padding:16px 18px;
-  transition:all .2s;
-}
-.tl-card:hover{border-color:var(--teal);box-shadow:var(--shadow-sm)}
-.tl-card.latest{
-  border-color:var(--teal);
-  background:linear-gradient(135deg,#f0fdfa 0%,white 100%);
-}
-.tl-head{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:10px;flex-wrap:wrap;gap:8px;
-}
-.tl-visit-num{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--teal-faint);color:var(--teal);
-  font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;
-}
-.tl-card.latest .tl-visit-num{background:linear-gradient(135deg,var(--teal),var(--teal-light));color:white}
-.tl-date{font-size:12px;color:var(--gray-500);display:inline-flex;align-items:center;gap:5px}
-.tl-doctor{font-size:12px;color:var(--gray-600);margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.tl-doctor i{color:var(--teal)}
-.tl-row{
-  display:grid;grid-template-columns:auto 1fr;gap:8px 12px;
-  font-size:12.5px;margin-top:8px;padding-top:8px;
-  border-top:1px dashed var(--gray-200);
-}
-.tl-row .tl-lbl{font-weight:700;color:var(--teal);font-size:11px;text-transform:uppercase;letter-spacing:.3px}
-.tl-row .tl-val{color:var(--gray-700);line-height:1.5}
-.tl-actions{
-  display:flex;gap:6px;margin-top:12px;
-  padding-top:10px;border-top:1px solid var(--gray-100);
-  justify-content:flex-end;
-}
-.modal-backdrop{
-  position:fixed;inset:0;
-  background:rgba(10,22,40,.55);
-  backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;
-  z-index:2000;padding:20px;
-  animation:fadeIn .2s ease;
-}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal{
-  background:white;
-  border-radius:var(--radius-lg);
-  max-width:780px;width:100%;
-  max-height:90vh;overflow:hidden;
-  display:flex;flex-direction:column;
-  box-shadow:var(--shadow-xl);
-  animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
-}
-@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.modal-head{
-  background:linear-gradient(135deg,var(--navy),var(--navy2));
-  padding:20px 26px;
-  display:flex;align-items:center;gap:14px;
-  color:white;flex-shrink:0;
-}
-.modal-head-icon{
-  width:42px;height:42px;border-radius:11px;
-  background:rgba(255,255,255,.12);
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;color:var(--teal-light);
-}
-.modal-head h3{font-size:17px;font-weight:700;letter-spacing:.3px}
-.modal-head p{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px}
-.modal-close{
-  margin-left:auto;
-  width:36px;height:36px;border:none;border-radius:50%;
-  background:rgba(255,255,255,.1);color:white;
-  cursor:pointer;font-size:16px;
-  display:flex;align-items:center;justify-content:center;
-  transition:.2s;
-}
-.modal-close:hover{background:rgba(239,68,68,.4);transform:rotate(90deg)}
-.modal-body{padding:24px 26px;overflow-y:auto;flex:1}
-.modal-foot{
-  padding:16px 26px;
-  background:var(--gray-50);
-  border-top:1px solid var(--gray-200);
-  display:flex;gap:10px;justify-content:flex-end;
-  flex-shrink:0;
-}
-.profile-card{
-  background:linear-gradient(135deg,var(--navy),var(--navy2));
-  border-radius:var(--radius);
-  padding:18px 22px;
-  color:white;
-  display:flex;align-items:center;gap:16px;
-  margin-bottom:18px;
-  box-shadow:var(--shadow);
-}
-.profile-avatar{
-  width:60px;height:60px;border-radius:50%;
-  background:linear-gradient(135deg,var(--teal),var(--teal-light));
-  display:flex;align-items:center;justify-content:center;
-  font-size:24px;font-weight:700;color:white;flex-shrink:0;
-  box-shadow:0 4px 12px rgba(13,148,136,.5);
-}
-.profile-info{flex:1;min-width:0}
-.profile-name{font-size:18px;font-weight:700;letter-spacing:.3px}
-.profile-meta{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px;display:flex;flex-wrap:wrap;gap:10px}
-.profile-meta span{display:inline-flex;align-items:center;gap:4px}
-.profile-stats{display:flex;gap:10px;flex-shrink:0}
-.profile-stat{
-  background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:10px;
-  padding:8px 14px;text-align:center;min-width:80px;
-}
-.profile-stat-val{font-size:18px;font-weight:700;color:var(--teal-light);line-height:1}
-.profile-stat-label{font-size:10px;color:rgba(255,255,255,.6);margin-top:3px;text-transform:uppercase;letter-spacing:.3px}
-.filter-bar{
-  display:flex;gap:10px;align-items:center;
-  margin-bottom:18px;flex-wrap:wrap;
-}
-.filter-chip{
-  padding:7px 14px;border:1.5px solid var(--gray-200);
-  background:white;border-radius:99px;
-  font-family:inherit;font-size:12.5px;font-weight:600;
-  color:var(--gray-600);cursor:pointer;
-  display:inline-flex;align-items:center;gap:6px;
-  transition:.2s;
-}
-.filter-chip:hover{border-color:var(--teal);color:var(--teal)}
-.filter-chip.active{
-  background:linear-gradient(135deg,var(--teal),var(--teal-light));
-  color:white;border-color:var(--teal);
-  box-shadow:0 2px 8px rgba(13,148,136,.3);
-}
-.btn-warning{
-  background:linear-gradient(135deg,#f59e0b,#fb923c);
-  color:white;box-shadow:0 4px 14px rgba(245,158,11,.35);
-}
-.btn-warning:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(245,158,11,.45)}
 
-/* ===== PRESCRIPTION & INVOICE STYLES ===== */
-.rx-item-head{
-  display:grid;
-  grid-template-columns:32px 1.7fr 0.9fr 0.9fr 0.9fr 1.3fr 0.7fr 36px;
-  gap:8px;
-  font-size:10.5px;font-weight:700;
-  color:var(--gray-500);
-  text-transform:uppercase;letter-spacing:.4px;
-  padding:10px 0;
-  border-bottom:2px solid var(--teal-faint);
-  margin-bottom:6px;
-}
-.rx-item-row{
-  display:grid;
-  grid-template-columns:32px 1.7fr 0.9fr 0.9fr 0.9fr 1.3fr 0.7fr 36px;
-  gap:8px;
-  align-items:start;
-  padding:6px 0;
-  border-bottom:1px dashed var(--gray-200);
-}
-.rx-item-row:last-child{border-bottom:none}
-.rx-item-row .ix-num{
-  width:30px;height:30px;border-radius:50%;
-  background:var(--teal-faint);color:var(--teal);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;font-weight:700;margin-top:4px;
-}
-.rx-item-row input,.rx-item-row textarea{
-  padding:8px 10px;
-  border:1.5px solid var(--gray-200);
-  border-radius:8px;
-  font-size:12.5px;font-family:inherit;
-  background:var(--gray-50);
-  width:100%;
-  outline:none;
-  transition:.2s;
-  color:var(--gray-800);
-}
-.rx-item-row input:focus,.rx-item-row textarea:focus{
-  border-color:var(--teal);background:white;
-  box-shadow:0 0 0 3px rgba(13,148,136,.15);
-}
-.rx-item-row textarea{min-height:36px;resize:vertical;line-height:1.4}
-.rx-item-rm{
-  width:30px;height:30px;border-radius:8px;
-  background:rgba(239,68,68,.12);
-  color:var(--red);
-  border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;transition:.2s;margin-top:4px;
-}
-.rx-item-rm:hover{background:var(--red);color:white}
-.rx-add-row{
-  margin-top:14px;
-  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
-}
-.rx-total-bar{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:10px;
-  background:linear-gradient(135deg,var(--teal-faint),white);
-  border:1.5px solid var(--teal-faint);
-  border-radius:var(--radius);
-  padding:14px 20px;margin-top:14px;
-}
-.rx-total-bar .rx-total-label{
-  font-size:12px;font-weight:700;
-  color:var(--teal);text-transform:uppercase;
-  letter-spacing:.5px;
-}
-.rx-total-bar .rx-total-val{
-  font-size:22px;font-weight:700;
-  color:var(--teal);
-}
-.rx-med-presets{
-  display:flex;flex-wrap:wrap;gap:6px;
-  padding:4px 0;margin-bottom:10px;
-}
-.rx-med-chip{
-  padding:5px 11px;
-  border:1.5px solid var(--gray-200);
-  background:white;
-  border-radius:99px;
-  font-family:inherit;
-  font-size:11.5px;font-weight:600;
-  color:var(--gray-600);
-  cursor:pointer;
-  display:inline-flex;align-items:center;gap:4px;
-  transition:.2s;
-}
-.rx-med-chip:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-faint)}
-.inv-status{
-  display:inline-flex;align-items:center;gap:4px;
-  padding:3px 10px;border-radius:99px;
-  font-size:11.5px;font-weight:700;
-}
-.inv-status.paid{background:#d1fae5;color:var(--green-dark)}
-.inv-status.partial{background:#fef3c7;color:#b45309}
-.inv-status.unpaid{background:#fee2e2;color:var(--red-dark)}
-.inv-summary{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  background:linear-gradient(135deg,#f0fdfa,#f8fafc);
-  border:1.5px solid var(--teal-faint);
-  border-radius:var(--radius);
-  padding:18px;margin-top:14px;
-}
-.inv-summary .inv-cell{
-  background:white;
-  border-radius:10px;
-  padding:12px 14px;
-  border:1px solid var(--gray-100);
-}
-.inv-summary .inv-cell label{
-  font-size:10px;font-weight:700;
-  color:var(--teal);
-  text-transform:uppercase;
-  letter-spacing:.5px;
-  display:block;margin-bottom:6px;
-}
-.inv-summary .inv-cell input{
-  width:100%;
-  border:none;
-  border-bottom:2px solid var(--gray-200);
-  background:transparent;
-  font-size:14px;font-weight:700;
-  color:var(--navy);
-  padding:4px 0 6px;
-  font-family:inherit;
-  outline:none;
-}
-.inv-summary .inv-cell input:focus{border-color:var(--teal)}
-.inv-summary .inv-cell select{
-  width:100%;
-  border:none;
-  border-bottom:2px solid var(--gray-200);
-  background:transparent;
-  font-size:13px;font-weight:700;
-  color:var(--navy);
-  padding:4px 0 6px;
-  font-family:inherit;
-  outline:none;cursor:pointer;
-}
-.inv-summary .inv-total-cell{
-  background:linear-gradient(135deg,var(--teal),var(--teal-light));
-  border:none;color:white;
-}
-.inv-summary .inv-total-cell label{color:rgba(255,255,255,.85)}
-.inv-summary .inv-total-cell .inv-total-val{
-  font-size:22px;font-weight:700;
-  color:white;padding:4px 0 6px;
-}
-.rx-card{
-  background:white;
-  border:1.5px solid var(--gray-200);
-  border-radius:var(--radius);
-  padding:16px 18px;
-  transition:all .2s;
-  cursor:pointer;position:relative;
-}
-.rx-card:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:var(--shadow)}
-.rx-card .rc-head{
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:8px;margin-bottom:10px;
-}
-.rx-card .rc-id{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--navy);color:white;
-  font-size:11px;font-weight:700;
-  padding:3px 10px;border-radius:99px;
-}
-.rx-card .rc-date{font-size:12px;color:var(--gray-500);display:inline-flex;align-items:center;gap:4px}
-.rx-card .rc-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:2px}
-.rx-card .rc-meta{font-size:12px;color:var(--gray-500);margin-bottom:8px}
-.rx-card .rc-stats{
-  display:grid;grid-template-columns:1fr 1fr;gap:8px;
-  margin-top:10px;padding-top:10px;
-  border-top:1px dashed var(--gray-200);
-}
-.rx-card .rc-stat{text-align:center}
-.rx-card .rc-stat-val{font-size:18px;font-weight:700;color:var(--teal);line-height:1}
-.rx-card .rc-stat-label{font-size:10px;color:var(--gray-500);margin-top:2px;text-transform:uppercase;letter-spacing:.4px}
-.rx-card .rc-actions{
-  display:flex;gap:6px;margin-top:12px;
-  padding-top:10px;border-top:1px solid var(--gray-100);
-  justify-content:flex-end;
-}
+/* ===== PRESCRIPTION PAPER STYLES ===== */
 .rx-paper{
   background:white;color:var(--gray-800);
   padding:36px 40px;
@@ -1199,20 +686,7 @@ body{
 }
 .rx-paper-patient .pp-row{font-size:13px;color:var(--gray-700)}
 .rx-paper-patient .pp-row strong{color:var(--navy)}
-.rx-paper-dx{
-  margin-bottom:14px;
-  padding:10px 16px;
-  background:#fef3c7;
-  border-left:4px solid var(--gold);
-  border-radius:8px;font-size:13px;
-}
-.rx-paper-dx strong{color:var(--gold);text-transform:uppercase;letter-spacing:.5px;font-size:11px}
-.rx-paper-dx p{margin-top:4px;color:var(--gray-800)}
-.rx-paper-rx{
-  font-family:'DM Serif Display',serif;
-  font-size:32px;color:var(--teal);
-  margin-bottom:8px;line-height:1;
-}
+
 .rx-paper-table{
   width:100%;border-collapse:collapse;margin-bottom:18px;
 }
@@ -1262,11 +736,6 @@ body{
   font-size:15px;font-weight:700;color:var(--teal);
   padding-top:10px;
 }
-.rx-paper-totals tr.paid td{color:var(--green-dark)}
-.rx-paper-totals tr.balance td{
-  background:var(--teal-faint);
-  color:var(--teal);font-weight:700;
-}
 .rx-paper-watermark{
   position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%) rotate(-30deg);
@@ -1276,20 +745,141 @@ body{
   white-space:nowrap;z-index:0;
 }
 .rx-paper>*{position:relative;z-index:1}
-.rx-paper-status{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:4px 12px;border-radius:99px;
-  font-size:11px;font-weight:700;letter-spacing:.4px;
-}
-.rx-paper-status.paid{background:#d1fae5;color:var(--green-dark)}
-.rx-paper-status.partial{background:#fef3c7;color:#b45309}
-.rx-paper-status.unpaid{background:#fee2e2;color:var(--red-dark)}
 
+/* ===== MODAL WINDOWS ===== */
+.modal-backdrop{
+  position:fixed;inset:0;
+  background:rgba(10,22,40,.55);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  z-index:2000;padding:20px;
+  animation:fadeIn .2s ease;
+  overflow-y:auto;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  background:white;
+  border-radius:var(--radius-lg);
+  max-width:780px;width:100%;
+  max-height:90vh;overflow:hidden;
+  display:flex;flex-direction:column;
+  box-shadow:var(--shadow-xl);
+  animation:modalIn .3s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.92) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-head{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  padding:20px 26px;
+  display:flex;align-items:center;gap:14px;
+  color:white;flex-shrink:0;
+}
+.modal-head-icon{
+  width:42px;height:42px;border-radius:11px;
+  background:rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--teal-light);
+}
+.modal-head h3{font-size:17px;font-weight:700;letter-spacing:.3px}
+.modal-head p{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px}
+.modal-close{
+  margin-left:auto;
+  width:36px;height:36px;border:none;border-radius:50%;
+  background:rgba(255,255,255,.1);color:white;
+  cursor:pointer;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;
+}
+.modal-close:hover{background:rgba(239,68,68,.4);transform:rotate(90deg)}
+.modal-body{padding:24px 26px;overflow-y:auto;flex:1}
+.modal-foot{
+  padding:16px 26px;
+  background:var(--gray-50);
+  border-top:1px solid var(--gray-200);
+  display:flex;gap:10px;justify-content:flex-end;
+  flex-shrink:0;
+  flex-wrap:wrap;
+}
+
+/* ===== ANATOMY TIMELINE ===== */
+.timeline{position:relative;padding-left:30px}
+.timeline::before{
+  content:'';position:absolute;left:11px;top:8px;bottom:8px;
+  width:2px;background:linear-gradient(180deg,var(--teal) 0%,var(--teal-faint) 100%);
+}
+.tl-item{position:relative;margin-bottom:20px}
+.tl-item::before{
+  content:'';position:absolute;left:-23px;top:18px;
+  width:14px;height:14px;border-radius:50%;
+  background:white;border:3px solid var(--teal);
+  box-shadow:0 0 0 4px rgba(13,148,136,.15);
+}
+.tl-card{
+  background:white;
+  border:1.5px solid var(--gray-200);
+  border-radius:var(--radius);
+  padding:16px 18px;
+  transition:all .2s;
+}
+.tl-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;flex-wrap:wrap;gap:8px;
+}
+.tl-visit-num{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--teal-faint);color:var(--teal);
+  font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;
+}
+.tl-date{font-size:12px;color:var(--gray-500);display:inline-flex;align-items:center;gap:5px}
+.tl-row{
+  display:grid;grid-template-columns:auto 1fr;gap:8px 12px;
+  font-size:12.5px;margin-top:8px;padding-top:8px;
+  border-top:1px dashed var(--gray-200);
+}
+.tl-row .tl-lbl{font-weight:700;color:var(--teal);font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+.tl-row .tl-val{color:var(--gray-700);line-height:1.5}
+.tl-actions{
+  display:flex;gap:6px;margin-top:12px;
+  padding-top:10px;border-top:1px solid var(--gray-100);
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media print{
+  body{background:white;padding:0}
+  .top-bar,.tabs-nav,.stats-row,.btn-row,.patient-list-section,.search-bar,.pagination,
+  .returning-banner,.visit-indicator,.history-actions,.bridge-container{display:none!important}
+  .card{box-shadow:none;border:1px solid #ddd}
+  .card-header{background:#0d9488!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wound-wrapper{border:1px solid #ddd}
+  .modal-backdrop{position:absolute;inset:0;background:none;padding:0;backdrop-filter:none}
+  .modal{box-shadow:none;max-height:none;overflow:visible;border:none}
+  .modal-head,.modal-foot,.modal-close{display:none!important}
+  .modal-body{padding:0}
+}
+@media(max-width:1024px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .vital-grid{grid-template-columns:repeat(3,1fr)}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:680px){
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .vital-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .top-bar{flex-direction:column;gap:12px;top:0;border-radius:0;padding:14px}
+  .top-bar-brand{flex-direction:column;text-align:center}
+  .app-wrapper{padding:12px 8px}
+  .tabs-nav{padding:4px}
+  .tab-btn{font-size:12px;padding:8px 12px}
+  .sig-bar{flex-direction:column;align-items:stretch}
+}
+.fade-in{animation:fadeUp .4s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 <div id="app">
-  <!-- ===== LOGIN ===== -->
+  <!-- ===== LOGIN SCREEN ===== -->
   <div class="login-screen" v-if="!isLoggedIn">
     <div class="login-particles">
       <span></span><span></span><span></span>
@@ -1319,9 +909,10 @@ body{
     </div>
   </div>
 
-  <!-- ===== MAIN APP ===== -->
+  <!-- ===== MAIN CLINIC SYSTEM ===== -->
   <div class="app-wrapper" v-if="isLoggedIn">
 
+    <!-- Top Banner & Brand -->
     <div class="top-bar fade-in">
       <div class="top-bar-brand">
         <div class="brand-icon"><i class="fas fa-heartbeat"></i></div>
@@ -1331,9 +922,9 @@ body{
         </div>
       </div>
       <div class="top-bar-user">
-        <div class="user-chip">
-          <i class="fas fa-user-md"></i>
-          <span>{{ currentUser }}</span>
+        <div class="user-chip" style="background: rgba(13, 148, 136, 0.2);">
+          <i class="fas fa-key"></i>
+          <span style="font-family: monospace;">កូដសមកាលកម្ម: {{ syncUserId }}</span>
         </div>
         <button class="btn btn-danger btn-sm" @click="logout">
           <i class="fas fa-sign-out-alt"></i> ចាកចេញ
@@ -1341,7 +932,29 @@ body{
       </div>
     </div>
 
-    <div class="stats-row fade-in stagger-1">
+    <!-- Firebase Sync Bridge Status Widget -->
+    <div class="bridge-container fade-in">
+      <div class="bridge-info">
+        <div class="bridge-badge"><i class="fas fa-random"></i> ស្ពានចម្លង Firebase</div>
+        <div>
+          <h4 style="font-size: 13px; margin-bottom: 2px;">ផ្ទេរទិន្នន័យរវាងឧបករណ៍ (Cross-Device Sync)</h4>
+          <p style="font-size: 11px; opacity: 0.85;">ទិន្នន័យនឹងត្រូវលុបចេញពី Cloud Firestore ភ្លាមៗក្រោយពេលទាញយកជោគជ័យ។</p>
+        </div>
+      </div>
+      <div class="bridge-actions">
+        <button class="btn-bridge upload" @click="uploadToBridge" :disabled="isSyncing">
+          <i class="fas fa-cloud-upload-alt"></i> 
+          {{ isSyncing ? 'កំពុងផ្ញើ...' : '១. ផ្ញើទៅកាន់ស្ពាន' }}
+        </button>
+        <button class="btn-bridge" @click="downloadFromBridge" :disabled="isSyncing">
+          <i class="fas fa-cloud-download-alt"></i> 
+          {{ isSyncing ? 'កំពុងទាញយក...' : '២. ទាញយកពីស្ពាន' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI Widgets Dashboard -->
+    <div class="stats-row fade-in">
       <div class="stat-card t">
         <div class="stat-icon"><i class="fas fa-users"></i></div>
         <div>
@@ -1372,7 +985,8 @@ body{
       </div>
     </div>
 
-    <div class="tabs-nav fade-in stagger-2">
+    <!-- Main Navigation Bar -->
+    <div class="tabs-nav fade-in">
       <button class="tab-btn" :class="{active:activeTab==='form'}" @click="activeTab='form'">
         <div class="tab-dot"></div>
         <i class="fas fa-file-medical"></i> ទម្រង់អ្នកជំងឺ
@@ -1399,11 +1013,11 @@ body{
       </button>
     </div>
 
-    <!-- ===== FORM TAB ===== -->
-    <div v-show="activeTab==='form'" class="fade-in stagger-3">
+    <!-- ===== TAB 1: FORM TAB ===== -->
+    <div v-show="activeTab==='form'" class="fade-in">
       <form @submit.prevent="savePatient">
 
-        <!-- RETURNING PATIENT BANNER -->
+        <!-- Banner for Returning/Matching Patients -->
         <div v-if="matchedPatient" class="returning-banner">
           <div class="rb-icon"><i class="fas fa-user-clock"></i></div>
           <div class="rb-body">
@@ -1438,7 +1052,7 @@ body{
           </div>
         </div>
 
-        <!-- I. PERSONAL -->
+        <!-- Section I: Personal Information -->
         <div class="card">
           <div class="card-header">
             <div class="card-header-icon"><i class="fas fa-user-circle"></i></div>
@@ -1488,7 +1102,7 @@ body{
           </div>
         </div>
 
-        <!-- II. ADMISSION -->
+        <!-- Section II: Admission Data -->
         <div class="card">
           <div class="card-header">
             <div class="card-header-icon"><i class="fas fa-id-card"></i></div>
@@ -1527,7 +1141,7 @@ body{
           </div>
         </div>
 
-        <!-- III. MEDICAL HISTORY -->
+        <!-- Section III: Medical History -->
         <div class="card">
           <div class="card-header">
             <div class="card-header-icon"><i class="fas fa-stethoscope"></i></div>
@@ -1546,11 +1160,11 @@ body{
                 <label>ACTD</label>
                 <input v-model="form.actd" placeholder="Allergie / Chirurgie / ..."/>
               </div>
-              <div class="field">
+              <div class="field col-span-1">
                 <label>Histoire de la Maladie</label>
                 <textarea v-model="form.histoire" placeholder="ពិពណ៌នាប្រវត្តិជំងឺ..."></textarea>
               </div>
-              <div class="field">
+              <div class="field col-span-1">
                 <label>Examen Clinique</label>
                 <textarea v-model="form.examenClinique" placeholder="ការពិនិត្យគ្លីនិក..."></textarea>
               </div>
@@ -1635,7 +1249,7 @@ body{
           </div>
         </div>
 
-        <!-- IV. WOUND MAP -->
+        <!-- Section IV: Anatomical Wound Map -->
         <div class="card">
           <div class="card-header">
             <div class="card-header-icon"><i class="fas fa-map-marker-alt"></i></div>
@@ -1658,6 +1272,7 @@ body{
                       <stop offset="100%" style="stop-color:#1d4ed8"/>
                     </linearGradient>
                   </defs>
+                  <!-- Body Outlines -->
                   <ellipse cx="160" cy="60" rx="42" ry="52" fill="url(#skin)" stroke="#d4a574" stroke-width="1.5"/>
                   <ellipse cx="145" cy="55" rx="6" ry="7" fill="white" opacity=".7"/>
                   <ellipse cx="175" cy="55" rx="6" ry="7" fill="white" opacity=".7"/>
@@ -1681,6 +1296,7 @@ body{
                   <ellipse cx="133" cy="450" rx="28" ry="16" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
                   <ellipse cx="187" cy="450" rx="28" ry="16" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
                   <text x="160" y="490" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#94a3b8" font-weight="500">ខ្លួនអ្នកជំងឺ (Front)</text>
+                  <!-- Interactive Markers -->
                   <circle v-for="(pt,i) in woundPoints" :key="i"
                     :cx="pt.svgX" :cy="pt.svgY" r="10"
                     fill="rgba(239,68,68,0.25)" stroke="#ef4444" stroke-width="2.5">
@@ -1711,7 +1327,7 @@ body{
           </div>
         </div>
 
-        <!-- SIGNATURE -->
+        <!-- Section V: Sign-off block -->
         <div class="card">
           <div class="card-header">
             <div class="card-header-icon"><i class="fas fa-pen-fancy"></i></div>
@@ -1737,7 +1353,7 @@ body{
           </div>
         </div>
 
-        <!-- BUTTONS -->
+        <!-- Submission Actions -->
         <div class="btn-row">
           <button type="submit" class="btn btn-primary">
             <i class="fas fa-save"></i> រក្សាទុក
@@ -1756,14 +1372,14 @@ body{
       </form>
     </div>
 
-    <!-- ===== LIST TAB ===== -->
-    <div v-show="activeTab==='list'" class="fade-in stagger-3">
+    <!-- ===== TAB 2: PATIENTS LIST ===== -->
+    <div v-show="activeTab==='list'" class="fade-in">
       <div class="card">
         <div class="card-header">
           <div class="card-header-icon"><i class="fas fa-list-ul"></i></div>
           <div>
             <h2>បញ្ជីអ្នកជំងឺ</h2>
-            <p>Patient Records · Local Database</p>
+            <p>Patient Records · Database Management</p>
           </div>
         </div>
         <div class="card-body">
@@ -1783,7 +1399,7 @@ body{
             <small>ចាប់ផ្ដើមដោយបន្ថែមអ្នកជំងឺថ្មី</small>
           </div>
 
-          <div v-else>
+          <div v-else class="table-responsive">
             <table class="patient-table">
               <thead>
                 <tr>
@@ -1830,29 +1446,26 @@ body{
                     {{ getLastVisit(p).diagnostic || '-' }}
                   </td>
                   <td>
-                    <div style="display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap">
-                      <button class="btn btn-warning btn-xs" @click="startNewVisitForExisting(p)" data-tip="ពិនិត្យថ្មី">
+                    <div style="display:flex;gap:6px;justify-content:flex-end">
+                      <button class="btn btn-warning btn-xs" @click="startNewVisitForExisting(p)" title="ពិនិត្យថ្មី">
                         <i class="fas fa-plus"></i>
                       </button>
-                      <button class="btn btn-success btn-xs" @click="viewPatientHistory(p)" data-tip="ប្រវត្តិ">
+                      <button class="btn btn-success btn-xs" @click="viewPatientHistory(p)" title="ប្រវត្តិ">
                         <i class="fas fa-history"></i>
                       </button>
-                      <button class="btn btn-primary btn-xs" @click="startBloodTestForPatient(p)" data-tip="ឈាម">
+                      <button class="btn btn-primary btn-xs" @click="startBloodTestForPatient(p)" title="ឈាម">
                         <i class="fas fa-vial"></i>
                       </button>
-                      <button class="btn btn-danger btn-xs" @click="startPrescriptionForPatient(p)" data-tip="វេជ្ជបញ្ជា" style="background:linear-gradient(135deg,#a855f7,#7c3aed);box-shadow:0 2px 8px rgba(168,85,247,.35)">
+                      <button class="btn btn-danger btn-xs" @click="startPrescriptionForPatient(p)" title="វេជ្ជបញ្ជា" style="background:linear-gradient(135deg,#a855f7,#7c3aed);box-shadow:0 2px 8px rgba(168,85,247,.35)">
                         <i class="fas fa-prescription-bottle-alt"></i>
                       </button>
-                      <button class="btn btn-ghost btn-xs" @click="startInvoiceForPatient(p)" data-tip="វិក្កយបត្រ" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border-color:#d97706">
+                      <button class="btn btn-ghost btn-xs" @click="startInvoiceForPatient(p)" title="វិក្កយបត្រ" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:white;border-color:#d97706">
                         <i class="fas fa-file-invoice-dollar"></i>
                       </button>
-                      <button v-if="getPatientBloodTestCount(p) > 0" class="btn btn-ghost btn-xs" @click="viewPatientBloodTests(p)" data-tip="លទ្ធផលឈាម">
-                        <i class="fas fa-eye"></i>
-                      </button>
-                      <button class="btn btn-ghost btn-xs" @click="loadPatientProfile(p)" data-tip="កែប្រែ">
+                      <button class="btn btn-ghost btn-xs" @click="loadPatientProfile(p)" title="កែប្រែ">
                         <i class="fas fa-edit"></i>
                       </button>
-                      <button class="btn btn-danger btn-xs" @click="deletePatient(p.patientId)" data-tip="លុប">
+                      <button class="btn btn-danger btn-xs" @click="deletePatient(p.patientId)" title="លុប">
                         <i class="fas fa-trash"></i>
                       </button>
                     </div>
@@ -1860,27 +1473,28 @@ body{
                 </tr>
               </tbody>
             </table>
-            <div class="pagination" v-if="totalPages > 1">
-              <span class="page-info">
-                បង្ហាញ {{ (currentPage-1)*perPage+1 }}–{{ Math.min(currentPage*perPage,filteredPatients.length) }} នៃ {{ filteredPatients.length }}
-              </span>
-              <div class="page-btns">
-                <button class="page-btn" @click="currentPage=Math.max(1,currentPage-1)" :disabled="currentPage===1">
-                  <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="page-btn" v-for="p in totalPages" :key="p" :class="{active:p===currentPage}" @click="currentPage=p">{{ p }}</button>
-                <button class="page-btn" @click="currentPage=Math.min(totalPages,currentPage+1)" :disabled="currentPage===totalPages">
-                  <i class="fas fa-chevron-right"></i>
-                </button>
-              </div>
+          </div>
+          <!-- Pagination elements -->
+          <div class="pagination" v-if="totalPages > 1">
+            <span class="page-info">
+              បង្ហាញ {{ (currentPage-1)*perPage+1 }}–{{ Math.min(currentPage*perPage,filteredPatients.length) }} នៃ {{ filteredPatients.length }}
+            </span>
+            <div class="page-btns">
+              <button class="page-btn" @click="currentPage=Math.max(1,currentPage-1)" :disabled="currentPage===1">
+                <i class="fas fa-chevron-left"></i>
+              </button>
+              <button class="page-btn" v-for="p in totalPages" :key="p" :class="{active:p===currentPage}" @click="currentPage=p">{{ p }}</button>
+              <button class="page-btn" @click="currentPage=Math.min(totalPages,currentPage+1)" :disabled="currentPage===totalPages">
+                <i class="fas fa-chevron-right"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== HISTORY TAB (NEW) ===== -->
-    <div v-show="activeTab==='history'" class="fade-in stagger-3">
+    <!-- ===== TAB 3: VISIT HISTORY LOG ===== -->
+    <div v-show="activeTab==='history'" class="fade-in">
       <div class="card">
         <div class="card-header">
           <div class="card-header-icon"><i class="fas fa-history"></i></div>
@@ -1937,7 +1551,7 @@ body{
                   <div class="hc-stat-val">{{ p.visits.length }}</div>
                   <div class="hc-stat-label">លើកពិនិត្យ</div>
                 </div>
-                <div class="hc-stat" :class="{returning: getPatientBloodTestCount(p) > 0}" style="--teal:var(--red)">
+                <div class="hc-stat" :class="{returning: getPatientBloodTestCount(p) > 0}">
                   <div class="hc-stat-val" :style="{color: getPatientBloodTestCount(p) > 0 ? 'var(--red)' : 'var(--gray-400)'}">{{ getPatientBloodTestCount(p) }}</div>
                   <div class="hc-stat-label">លទ្ធផលឈាម</div>
                 </div>
@@ -1950,15 +1564,6 @@ body{
                 <button class="btn btn-warning btn-xs" @click.stop="startNewVisitForExisting(p)">
                   <i class="fas fa-plus"></i> ពិនិត្យ
                 </button>
-                <button class="btn btn-xs" @click.stop="startPrescriptionForPatient(p)" style="background:linear-gradient(135deg,#a855f7,#7c3aed);color:white">
-                  <i class="fas fa-prescription-bottle-alt"></i> Rx
-                </button>
-                <button class="btn btn-xs" @click.stop="startInvoiceForPatient(p)" style="background:linear-gradient(135deg,#f59e0b,#d97706);color:white">
-                  <i class="fas fa-file-invoice-dollar"></i> Inv
-                </button>
-                <button v-if="getPatientBloodTestCount(p) > 0" class="btn btn-danger btn-xs" @click.stop="viewPatientBloodTests(p)">
-                  <i class="fas fa-vial"></i> ឈាម ({{ getPatientBloodTestCount(p) }})
-                </button>
                 <button class="btn btn-primary btn-xs" @click.stop="viewPatientHistory(p)">
                   <i class="fas fa-eye"></i> លម្អិត
                 </button>
@@ -1969,73 +1574,40 @@ body{
       </div>
     </div>
 
-    <!-- ===== BLOOD TEST TAB ===== -->
-    <div v-show="activeTab==='blood'" class="fade-in stagger-3">
-      <p class="subtitle">ផ្នែកគ្រប់គ្រងលទ្ធផលឈាម · Blood Test Result Management</p>
+    <!-- ===== TAB 4: BLOOD TEST LAB MODULE ===== -->
+    <div v-show="activeTab==='blood'" class="fade-in">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-icon"><i class="fas fa-vial"></i></div>
+          <div>
+            <h2>ផ្នែកគ្រប់គ្រងលទ្ធផលឈាម</h2>
+            <p>Blood Test Result Management</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="tabs-nav" style="margin-bottom:18px">
+            <button class="tab-btn" :class="{active:bloodTab==='form'}" @click="bloodTab='form'">
+              <div class="tab-dot"></div>
+              <i class="fas fa-plus-circle"></i> បញ្ចូលលទ្ធផលថ្មី
+            </button>
+            <button class="tab-btn" :class="{active:bloodTab==='list'}" @click="bloodTab='list'">
+              <div class="tab-dot"></div>
+              <i class="fas fa-list-ul"></i> បញ្ជីលទ្ធផល
+              <span class="badge badge-teal" v-if="bloodTests.length">{{ bloodTests.length }}</span>
+            </button>
+            <button class="tab-btn" :class="{active:bloodTab==='byPatient'}" @click="bloodTab='byPatient'">
+              <div class="tab-dot"></div>
+              <i class="fas fa-user-tag"></i> តាមអ្នកជំងឺ
+            </button>
+          </div>
 
-      <div class="stats-row fade-in" style="margin-bottom:18px">
-        <div class="stat-card t">
-          <div class="stat-icon"><i class="fas fa-vials"></i></div>
-          <div>
-            <div class="stat-val">{{ bloodTests.length }}</div>
-            <div class="stat-label">លទ្ធផលសរុប</div>
-          </div>
-        </div>
-        <div class="stat-card g">
-          <div class="stat-icon"><i class="fas fa-calendar-day"></i></div>
-          <div>
-            <div class="stat-val">{{ bloodTodayCount }}</div>
-            <div class="stat-label">ថ្ងៃនេះ</div>
-          </div>
-        </div>
-        <div class="stat-card o">
-          <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
-          <div>
-            <div class="stat-val">{{ bloodNormalCount }}</div>
-            <div class="stat-label">ធម្មតា</div>
-          </div>
-        </div>
-        <div class="stat-card r">
-          <div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
-          <div>
-            <div class="stat-val">{{ bloodAbnormalCount }}</div>
-            <div class="stat-label">មិនប្រក្រតី</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tabs-nav fade-in" style="margin-bottom:18px">
-        <button class="tab-btn" :class="{active:bloodTab==='form'}" @click="bloodTab='form'">
-          <div class="tab-dot"></div>
-          <i class="fas fa-plus-circle"></i> បញ្ចូលលទ្ធផលថ្មី
-        </button>
-        <button class="tab-btn" :class="{active:bloodTab==='list'}" @click="bloodTab='list'">
-          <div class="tab-dot"></div>
-          <i class="fas fa-list-ul"></i> បញ្ជីលទ្ធផល
-          <span class="badge badge-teal" v-if="bloodTests.length">{{ bloodTests.length }}</span>
-        </button>
-        <button class="tab-btn" :class="{active:bloodTab==='byPatient'}" @click="bloodTab='byPatient'">
-          <div class="tab-dot"></div>
-          <i class="fas fa-user-tag"></i> តាមអ្នកជំងឺ
-          <span class="badge badge-gold" v-if="patients.length">{{ patients.length }}</span>
-        </button>
-      </div>
-
-      <div v-show="bloodTab==='form'" class="fade-in">
-        <form @submit.prevent="saveBloodTest">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-user-circle"></i></div>
-              <div>
-                <h2>I. ព័ត៌មានអ្នកជំងឺ និងការពិនិត្យ</h2>
-                <p>Patient &amp; Test Information</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- PATIENT PICKER (REQUIRED) -->
-              <div class="g-full">
-                <label style="display:block;font-size:12px;font-weight:700;color:var(--gray-600);letter-spacing:.4px;margin-bottom:5px">
-                  ជ្រើសរើសអ្នកជំងឺ <span style="color:var(--red);margin-left:2px">*</span>
+          <!-- SUB-TAB A: Lab Entry Form -->
+          <div v-show="bloodTab==='form'">
+            <form @submit.prevent="saveBloodTest">
+              <!-- Linked Patient Picker Box -->
+              <div style="margin-bottom:16px">
+                <label style="display:block;font-size:12px;font-weight:700;color:var(--gray-600);margin-bottom:5px">
+                  ជ្រើសរើសអ្នកជំងឺ <span style="color:var(--red)">*</span>
                 </label>
                 <div v-if="!linkedPatient" class="patient-picker-trigger" @click="openPatientPicker('blood')">
                   <div class="pp-icon"><i class="fas fa-user-plus"></i></div>
@@ -2043,41 +1615,31 @@ body{
                     <div class="pp-name">ចុចដើម្បីជ្រើសរើសអ្នកជំងឺ</div>
                     <div class="pp-id">ត្រូវតែជ្រើសរើសមុនពេលបញ្ចូលលទ្ធផលឈាម</div>
                   </div>
-                  <i class="fas fa-chevron-right" style="color:var(--gray-400)"></i>
+                  <i class="fas fa-chevron-right"></i>
                 </div>
                 <div v-else class="patient-picker-trigger has-patient" @click="openPatientPicker('blood')">
                   <div class="pp-icon"><i class="fas fa-user-check"></i></div>
                   <div class="pp-text">
                     <div class="pp-name">{{ linkedPatient.name }}</div>
                     <div class="pp-id">
-                      ID: <strong>{{ linkedPatient.patientId }}</strong> ·
-                      {{ linkedPatient.age }}ឆ្នាំ · {{ linkedPatient.gender }} ·
-                      លើកពិនិត្យ: {{ linkedPatient.visits.length }} ដង
+                      ID: <strong>{{ linkedPatient.patientId }}</strong> · {{ linkedPatient.age }}ឆ្នាំ · {{ linkedPatient.gender }}
                     </div>
                   </div>
-                  <button type="button" class="pp-remove" @click.stop="clearLinkedPatient" data-tip="លុបការជ្រើសរើស">
+                  <button type="button" class="pp-remove" @click.stop="clearLinkedPatient">
                     <i class="fas fa-times"></i>
-                  </button>
-                </div>
-                <div v-if="linkedPatient && linkedPatientBloodTests.length" class="linked-tests-strip" style="margin-top:10px">
-                  <i class="fas fa-info-circle" style="color:var(--teal)"></i>
-                  <span class="lts-label">លទ្ធផលឈាមចាស់:</span>
-                  <span class="lts-count">{{ linkedPatientBloodTests.length }}</span>
-                  <span style="font-size:12px;color:var(--gray-600)">កំណត់ត្រា</span>
-                  <button type="button" class="lts-btn" @click="viewLinkedBloodTests">
-                    <i class="fas fa-eye"></i> មើល
                   </button>
                 </div>
               </div>
 
-              <div class="grid-3">
+              <!-- Lab Meta Fields -->
+              <div class="grid-3" style="margin-bottom:20px">
                 <div class="field">
                   <label>ឈ្មោះអ្នកជំងឺ <span class="req">*</span></label>
-                  <input v-model="bloodForm.patientName" :readonly="!!linkedPatient" @change="onPatientNameChange" placeholder="ឧ. សុខ សម្បត្តិ" required :style="{background: linkedPatient ? '#f0fdfa' : 'var(--gray-50)'}"/>
+                  <input v-model="bloodForm.patientName" :readonly="!!linkedPatient" placeholder="ឧ. សុខ សម្បត្តិ" required/>
                 </div>
                 <div class="field">
                   <label>លេខ ID អ្នកជំងឺ</label>
-                  <input v-model="bloodForm.patientId" :readonly="!!linkedPatient" @change="onPatientIdChange" placeholder="P-1001" :style="{background: linkedPatient ? '#f0fdfa' : 'var(--gray-50)'}"/>
+                  <input v-model="bloodForm.patientId" :readonly="!!linkedPatient" placeholder="P-1001"/>
                 </div>
                 <div class="field">
                   <label>ថ្ងៃពិនិត្យ <span class="req">*</span></label>
@@ -2093,49 +1655,29 @@ body{
                     </button>
                   </div>
                 </div>
-                <div class="field g-full">
-                  <label>កំណត់ចំណាំ / សេចក្តីសម្គាល់</label>
-                  <textarea v-model="bloodForm.notes" rows="2" placeholder="កំណត់ចំណាំបន្ថែម (ប្រសិនបើមាន)..."></textarea>
-                </div>
               </div>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-vial"></i></div>
-              <div>
-                <h2>II. លទ្ធផលពិនិត្យ · {{ getCategoryLabel(bloodForm.testCategory) }}</h2>
-                <p>Test Results &amp; Reference Ranges</p>
+              <!-- Lab Values Block -->
+              <div class="section-label">
+                <i class="fas fa-vial"></i> ប៉ារ៉ាម៉ែត្រពិនិត្យឈាម · {{ getCategoryLabel(bloodForm.testCategory) }}
               </div>
-            </div>
-            <div class="card-body">
               <div class="param-grid">
                 <div v-for="param in getParamsForCategory(bloodForm.testCategory)" :key="param.key"
                   class="param-card" :class="getParamStatusClass(bloodForm.results[param.key], param.range)">
                   <label>{{ param.label }}</label>
-                  <input v-model="bloodForm.results[param.key]" type="number" step="0.1" placeholder="0.0"/>
+                  <input v-model="bloodForm.results[param.key]" type="number" step="0.01" placeholder="0.0"/>
                   <div class="param-range">{{ param.range.min }} - {{ param.range.max }} {{ param.range.unit }}</div>
                   <div class="param-status" :class="getParamStatus(bloodForm.results[param.key], param.range)">
-                    <i v-if="getParamStatus(bloodForm.results[param.key], param.range)==='normal'" class="fas fa-check-circle"></i>
-                    <i v-else-if="getParamStatus(bloodForm.results[param.key], param.range)==='high'" class="fas fa-arrow-up"></i>
-                    <i v-else-if="getParamStatus(bloodForm.results[param.key], param.range)==='low'" class="fas fa-arrow-down"></i>
                     {{ getStatusText(bloodForm.results[param.key], param.range) }}
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-pen-fancy"></i></div>
-              <div>
-                <h2>III. ហត្ថលេខា</h2>
-                <p>Signature</p>
+              <div class="field g-full" style="margin-bottom:18px">
+                <label>កំណត់ចំណាំ / សេចក្តីសម្គាល់</label>
+                <textarea v-model="bloodForm.notes" rows="2" placeholder="កំណត់ចំណាំបន្ថែម (ប្រសិនបើមាន)..."></textarea>
               </div>
-            </div>
-            <div class="card-body">
+
               <div class="sig-bar">
                 <div class="sig-date">
                   <i class="far fa-calendar-alt"></i>
@@ -2149,47 +1691,33 @@ body{
                   <input v-model="bloodForm.doctorSign" placeholder="ឈ្មោះ និងហត្ថលេខា"/>
                 </div>
               </div>
-            </div>
+
+              <div class="btn-row">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-save"></i> រក្សាទុកលទ្ធផល
+                </button>
+                <button type="button" class="btn btn-ghost" @click="clearBloodForm">
+                  <i class="fas fa-eraser"></i> សម្អាតទម្រង់
+                </button>
+              </div>
+            </form>
           </div>
 
-          <div class="btn-row">
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-save"></i> រក្សាទុកលទ្ធផល
-            </button>
-            <button type="button" class="btn btn-ghost" @click="clearBloodForm">
-              <i class="fas fa-eraser"></i> សម្អាតទម្រង់
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div v-show="bloodTab==='list'" class="fade-in">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-header-icon"><i class="fas fa-list-ul"></i></div>
-            <div>
-              <h2>បញ្ជីលទ្ធផលឈាម</h2>
-              <p>Blood Test Records</p>
-            </div>
-          </div>
-          <div class="card-body">
+          <!-- SUB-TAB B: Lab Results Directory -->
+          <div v-show="bloodTab==='list'">
             <div class="search-bar">
               <div class="search-wrap">
                 <i class="fas fa-search"></i>
                 <input v-model="bloodSearchQuery" placeholder="ស្វែងរកឈ្មោះ, ID, ប្រភេទពិនិត្យ..."/>
               </div>
-              <button class="btn btn-primary btn-sm" @click="bloodTab='form';clearBloodForm()">
-                <i class="fas fa-plus"></i> លទ្ធផលថ្មី
-              </button>
             </div>
 
             <div v-if="filteredBloodTests.length === 0" class="empty-state">
               <i class="fas fa-vials"></i>
               <p>មិនទាន់មានទិន្នន័យទេ</p>
-              <small>ចាប់ផ្ដើមដោយបន្ថែមលទ្ធផលឈាមថ្មី</small>
             </div>
 
-            <div v-else>
+            <div v-else class="table-responsive">
               <table class="patient-table">
                 <thead>
                   <tr>
@@ -2221,10 +1749,10 @@ body{
                     <td>{{ bt.doctorSign || '-' }}</td>
                     <td>
                       <div style="display:flex;gap:6px;justify-content:flex-end">
-                        <button class="btn btn-ghost btn-xs" @click="loadBloodTest(bt)" data-tip="កែប្រែ">
+                        <button class="btn btn-ghost btn-xs" @click="loadBloodTest(bt)">
                           <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-danger btn-xs" @click="deleteBloodTest(bt.id)" data-tip="លុប">
+                        <button class="btn btn-danger btn-xs" @click="deleteBloodTest(bt.id)">
                           <i class="fas fa-trash"></i>
                         </button>
                       </div>
@@ -2234,28 +1762,14 @@ body{
               </table>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- BLOOD TEST BY PATIENT VIEW -->
-      <div v-show="bloodTab==='byPatient'" class="fade-in">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-header-icon"><i class="fas fa-user-tag"></i></div>
-            <div>
-              <h2>លទ្ធផលឈាមតាមអ្នកជំងឺ</h2>
-              <p>Blood Test Results by Patient</p>
-            </div>
-          </div>
-          <div class="card-body">
+          <!-- SUB-TAB C: Patients Blood Tests Directory -->
+          <div v-show="bloodTab==='byPatient'">
             <div class="search-bar">
               <div class="search-wrap">
                 <i class="fas fa-search"></i>
                 <input v-model="bloodByPatientSearch" placeholder="ស្វែងរកឈ្មោះអ្នកជំងឺ, ID..."/>
               </div>
-              <button class="btn btn-primary btn-sm" @click="openPatientPicker('blood')">
-                <i class="fas fa-plus"></i> បញ្ចូលលទ្ធផលថ្មី
-              </button>
             </div>
 
             <div v-if="filteredPatientsForBlood.length === 0" class="empty-state">
@@ -2288,10 +1802,6 @@ body{
                     <div class="hc-stat-label">ចុងក្រោយ</div>
                   </div>
                 </div>
-                <div v-if="getLastBloodTestFor(p)" style="margin-top:10px;font-size:12px;color:var(--gray-600);line-height:1.5">
-                  <i class="fas fa-vial" style="color:var(--teal)"></i>
-                  {{ getCategoryLabel(getLastBloodTestFor(p).testCategory) }}
-                </div>
                 <div style="margin-top:10px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap">
                   <button class="btn btn-warning btn-xs" @click.stop="startBloodTestForPatient(p)">
                     <i class="fas fa-plus"></i> ថ្មី
@@ -2303,239 +1813,138 @@ body{
               </div>
             </div>
           </div>
+
         </div>
       </div>
-
-      <!-- LINKED BLOOD TEST DETAIL MODAL -->
-      <div v-if="bloodTestDetailOpen" class="modal-backdrop" @click.self="closeBloodTestDetail">
-        <div class="modal" style="max-width:700px">
-          <div class="modal-head">
-            <div class="modal-head-icon"><i class="fas fa-vial"></i></div>
-            <div>
-              <h3>លទ្ធផលឈាម · {{ bloodTestDetailPatient && bloodTestDetailPatient.name }}</h3>
-              <p>កំណត់ត្រាលទ្ធផលឈាមទាំងអស់</p>
-            </div>
-            <button class="modal-close" @click="closeBloodTestDetail"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="modal-body" v-if="bloodTestDetailPatient">
-            <div class="linked-tests-strip" style="background:linear-gradient(135deg,var(--navy),var(--navy2));border:none">
-              <i class="fas fa-user" style="color:var(--teal-light)"></i>
-              <span class="lts-label" style="color:var(--teal-light)">អ្នកជំងឺ:</span>
-              <span class="lts-count" style="color:white">{{ bloodTestDetailPatient.name }}</span>
-              <span style="font-size:12px;color:rgba(255,255,255,.7)">ID: {{ bloodTestDetailPatient.patientId }}</span>
-              <span style="font-size:12px;color:rgba(255,255,255,.7)">·</span>
-              <span class="lts-count" style="color:#fca5a5">{{ getPatientBloodTestList(bloodTestDetailPatient).length }}</span>
-              <span style="font-size:12px;color:rgba(255,255,255,.7)">កំណត់ត្រា</span>
-            </div>
-
-            <div v-if="getPatientBloodTestList(bloodTestDetailPatient).length === 0" class="empty-state">
-              <i class="fas fa-vials"></i>
-              <p>មិនទាន់មានលទ្ធផលឈាមទេ</p>
-              <small>ចុចប៊ូតុងខាងក្រោមដើម្បីបន្ថែម</small>
-            </div>
-
-            <div v-else>
-              <div v-for="bt in getPatientBloodTestList(bloodTestDetailPatient)" :key="bt.id" class="bt-mini-card">
-                <div class="bt-mini-head">
-                  <span class="bt-mini-cat">
-                    <i class="fas fa-vial" style="font-size:9px"></i> {{ getCategoryLabel(bt.testCategory) }}
-                  </span>
-                  <span class="bt-mini-date">
-                    <i class="far fa-calendar-alt"></i> {{ bt.testDate }}
-                  </span>
-                </div>
-                <div class="bt-mini-summary">
-                  <span v-for="p in getParamsForCategory(bt.testCategory).slice(0,8)" :key="p.key"
-                    class="bt-mini-param" :class="getParamStatus(bt.results[p.key], p.range)">
-                    {{ p.label.split(' ')[0] }}: {{ bt.results[p.key] || '—' }}
-                  </span>
-                  <span v-if="getAbnormalCount(bt) > 0" class="bt-mini-param high">
-                    <i class="fas fa-exclamation-triangle"></i> {{ getAbnormalCount(bt) }} មិនប្រក្រតី
-                  </span>
-                </div>
-                <div class="bt-mini-foot">
-                  <span class="bt-doctor">
-                    <i class="fas fa-user-md"></i> {{ bt.doctorSign || '—' }}
-                  </span>
-                  <div class="bt-actions">
-                    <button class="btn btn-ghost btn-xs" @click="loadBloodTestFromModal(bt)">
-                      <i class="fas fa-edit"></i> កែប្រែ
-                    </button>
-                    <button class="btn btn-danger btn-xs" @click="deleteBloodTest(bt.id);bloodTestDetailPatient=this.patients.find(x=>x.patientId===bloodTestDetailPatient.patientId)||null;if(!bloodTestDetailPatient)closeBloodTestDetail()">
-                      <i class="fas fa-trash"></i> លុប
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-foot" v-if="bloodTestDetailPatient">
-            <button class="btn btn-primary" @click="startBloodTestForPatient(bloodTestDetailPatient);closeBloodTestDetail()">
-              <i class="fas fa-plus"></i> បញ្ចូលលទ្ធផលថ្មី
-            </button>
-            <button class="btn btn-ghost" @click="closeBloodTestDetail">
-              <i class="fas fa-times"></i> បិទ
-            </button>
-          </div>
-        </div>
-      </div>
-
     </div>
 
-
-    <!-- ===== PRESCRIPTION & INVOICE TAB ===== -->
-    <div v-show="activeTab==='rx'" class="fade-in stagger-3">
-      <p class="subtitle">គ្រប់គ្រងវេជ្ជបញ្ជា និងវិក្កយបត្រ · Prescription & Invoice Management</p>
-
-      <div class="stats-row fade-in" style="margin-bottom:18px">
-        <div class="stat-card t">
-          <div class="stat-icon"><i class="fas fa-prescription-bottle-alt"></i></div>
+    <!-- ===== TAB 5: RX & INVOICING MODULE ===== -->
+    <div v-show="activeTab==='rx'" class="fade-in">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-icon"><i class="fas fa-file-invoice-dollar"></i></div>
           <div>
-            <div class="stat-val">{{ prescriptions.length }}</div>
-            <div class="stat-label">វេជ្ជបញ្ជាសរុប</div>
+            <h2>វេជ្ជបញ្ជា &amp; វិក្កយបត្រ</h2>
+            <p>Prescription &amp; Billing Management</p>
           </div>
         </div>
-        <div class="stat-card g">
-          <div class="stat-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-          <div>
-            <div class="stat-val">{{ invoices.length }}</div>
-            <div class="stat-label">វិក្កយបត្រសរុប</div>
+        <div class="card-body">
+          <div class="tabs-nav" style="margin-bottom:18px">
+            <button class="tab-btn" :class="{active:rxTab==='rxNew'}" @click="rxTab='rxNew';if(!rxForm.id)clearRxForm()">
+              <div class="tab-dot"></div>
+              <i class="fas fa-prescription"></i> ចេញវេជ្ជបញ្ជា
+            </button>
+            <button class="tab-btn" :class="{active:rxTab==='invNew'}" @click="rxTab='invNew';if(!invoiceForm.id)clearInvForm()">
+              <div class="tab-dot"></div>
+              <i class="fas fa-file-invoice"></i> ចេញវិក្កយបត្រ
+            </button>
+            <button class="tab-btn" :class="{active:rxTab==='rxList'}" @click="rxTab='rxList'">
+              <div class="tab-dot"></div>
+              <i class="fas fa-list-ul"></i> បញ្ជីវេជ្ជបញ្ជា
+              <span class="badge badge-purple" v-if="prescriptions.length">{{ prescriptions.length }}</span>
+            </button>
+            <button class="tab-btn" :class="{active:rxTab==='invList'}" @click="rxTab='invList'">
+              <div class="tab-dot"></div>
+              <i class="fas fa-list-ul"></i> បញ្ជីវិក្កយបត្រ
+              <span class="badge badge-gold" v-if="invoices.length">{{ invoices.length }}</span>
+            </button>
           </div>
-        </div>
-        <div class="stat-card o">
-          <div class="stat-icon"><i class="fas fa-coins"></i></div>
-          <div>
-            <div class="stat-val">{{ fmtMoney(totalInvoiceAmount) }}</div>
-            <div class="stat-label">ចំណូលសរុប</div>
-          </div>
-        </div>
-        <div class="stat-card r">
-          <div class="stat-icon"><i class="fas fa-exclamation-circle"></i></div>
-          <div>
-            <div class="stat-val">{{ unpaidInvoiceCount }}</div>
-            <div class="stat-label">មិនទាន់បង់</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="tabs-nav fade-in" style="margin-bottom:18px">
-        <button class="tab-btn" :class="{active:rxTab==='rxNew'}" @click="rxTab='rxNew';if(!rxForm.id)clearRxForm()">
-          <div class="tab-dot"></div>
-          <i class="fas fa-prescription"></i> ចេញវេជ្ជបញ្ជា
-        </button>
-        <button class="tab-btn" :class="{active:rxTab==='invNew'}" @click="rxTab='invNew';if(!invoiceForm.id)clearInvForm()">
-          <div class="tab-dot"></div>
-          <i class="fas fa-file-invoice"></i> ចេញវិក្កយបត្រ
-        </button>
-        <button class="tab-btn" :class="{active:rxTab==='rxList'}" @click="rxTab='rxList'">
-          <div class="tab-dot"></div>
-          <i class="fas fa-list-ul"></i> បញ្ជីវេជ្ជបញ្ជា
-          <span class="badge badge-purple" v-if="prescriptions.length">{{ prescriptions.length }}</span>
-        </button>
-        <button class="tab-btn" :class="{active:rxTab==='invList'}" @click="rxTab='invList'">
-          <div class="tab-dot"></div>
-          <i class="fas fa-list-ul"></i> បញ្ជីវិក្កយបត្រ
-          <span class="badge badge-gold" v-if="invoices.length">{{ invoices.length }}</span>
-        </button>
-      </div>
-
-      <!-- ===== RX FORM ===== -->
-      <div v-show="rxTab==='rxNew'">
-        <form @submit.prevent="savePrescription">
-          <!-- Patient picker -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-user-circle"></i></div>
-              <div>
-                <h2>I. ព័ត៌មានអ្នកជំងឺ និងវេជ្ជបញ្ជា</h2>
-                <p>Patient & Prescription Information</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div v-if="!rxForm.patientId" class="patient-picker-trigger" @click="openPatientPickerForRx()">
-                <div class="pp-icon"><i class="fas fa-user-plus"></i></div>
-                <div class="pp-text">
-                  <div class="pp-name">ចុចដើម្បីជ្រើសរើសអ្នកជំងឺ</div>
-                  <div class="pp-id">ត្រូវតែជ្រើសរើសមុនពេលចេញវេជ្ជបញ្ជា</div>
-                </div>
-                <i class="fas fa-chevron-right" style="color:var(--gray-400)"></i>
-              </div>
-              <div v-else class="patient-picker-trigger has-patient">
-                <div class="pp-icon"><i class="fas fa-user-check"></i></div>
-                <div class="pp-text">
-                  <div class="pp-name">{{ rxForm.patientName }}</div>
-                  <div class="pp-id">
-                    ID: <strong>{{ rxForm.patientId }}</strong> ·
-                    {{ rxForm.patientAge }}ឆ្នាំ · {{ rxForm.patientGender }}
+          <!-- Prescription (Rx) Entry Form -->
+          <div v-show="rxTab==='rxNew'">
+            <form @submit.prevent="savePrescription">
+              <div style="margin-bottom:16px">
+                <label style="display:block;font-size:12px;font-weight:700;color:var(--gray-600);margin-bottom:5px">
+                  ជ្រើសរើសអ្នកជំងឺ <span style="color:var(--red)">*</span>
+                </label>
+                <div v-if="!rxForm.patientId" class="patient-picker-trigger" @click="openPatientPickerForRx()">
+                  <div class="pp-icon"><i class="fas fa-user-plus"></i></div>
+                  <div class="pp-text">
+                    <div class="pp-name">ចុចដើម្បីជ្រើសរើសអ្នកជំងឺ</div>
+                    <div class="pp-id">ត្រូវតែជ្រើសរើសមុនពេលចេញវេជ្ជបញ្ជា</div>
                   </div>
+                  <i class="fas fa-chevron-right"></i>
                 </div>
-                <button type="button" class="pp-remove" @click="rxForm.patientId='';rxForm.patientName='';rxForm.patientAge='';rxForm.patientGender=''" data-tip="លុបការជ្រើសរើស">
-                  <i class="fas fa-times"></i>
-                </button>
+                <div v-else class="patient-picker-trigger has-patient">
+                  <div class="pp-icon"><i class="fas fa-user-check"></i></div>
+                  <div class="pp-text">
+                    <div class="pp-name">{{ rxForm.patientName }}</div>
+                    <div class="pp-id">
+                      ID: <strong>{{ rxForm.patientId }}</strong> · {{ rxForm.patientAge }}ឆ្នាំ · {{ rxForm.patientGender }}
+                    </div>
+                  </div>
+                  <button type="button" class="pp-remove" @click="rxForm.patientId='';rxForm.patientName='';rxForm.patientAge='';rxForm.patientGender=''">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
               </div>
 
-              <div class="grid-3" style="margin-top:18px">
+              <div class="grid-3" style="margin-top:10px; margin-bottom:20px">
                 <div class="field">
                   <label>ឈ្មោះអ្នកជំងឺ <span class="req">*</span></label>
-                  <input v-model="rxForm.patientName" placeholder="ឧ. សុខ សម្បត្តិ" required/>
+                  <input v-model="rxForm.patientName" required/>
                 </div>
                 <div class="field">
                   <label>ថ្ងៃចេញវេជ្ជបញ្ជា <span class="req">*</span></label>
                   <input v-model="rxForm.date" type="date" required/>
                 </div>
                 <div class="field">
-                  <label>លេខ ID</label>
-                  <input v-model="rxForm.patientId" placeholder="P-1001"/>
+                  <label>លេខ ID អ្នកជំងឺ</label>
+                  <input v-model="rxForm.patientId"/>
                 </div>
                 <div class="field g-full">
                   <label>រោគវិនិច្ឆ័យ / Diagnosis</label>
-                  <textarea v-model="rxForm.diagnosis" rows="2" placeholder="រោគវិនិច្ឆ័យជំងឺ..."></textarea>
+                  <textarea v-model="rxForm.diagnosis" rows="2" placeholder="រោគវិនិច្ឆ័យ..."></textarea>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Rx Items -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-pills"></i></div>
-              <div>
-                <h2>II. បញ្ជីថ្នាំ · Prescription Items</h2>
-                <p>Medicines, dosage, frequency & duration</p>
+              <!-- Prescription Details Line Items -->
+              <div class="section-label">
+                <i class="fas fa-pills"></i> បញ្ជីថ្នាំ · Prescription Medicines
               </div>
-            </div>
-            <div class="card-body">
-              <!-- Quick presets -->
+              
               <div class="rx-med-presets">
                 <span style="font-size:11px;color:var(--gray-500);font-weight:700;align-self:center;margin-right:6px">ថ្នាំទូទៅ:</span>
                 <button type="button" v-for="(p,pi) in medicinePresets" :key="pi" class="rx-med-chip" @click="applyMedPreset(p, 0)">
-                  <i class="fas fa-plus" style="font-size:9px"></i> {{ p.name }}
+                  <i class="fas fa-plus"></i> {{ p.name }}
                 </button>
               </div>
 
-              <div class="rx-item-head">
-                <div>#</div>
-                <div>ឈ្មោះថ្នាំ</div>
-                <div>កម្រិត</div>
-                <div>ប្រើប្រាស់</div>
-                <div>រយៈពេល</div>
-                <div>កំណត់ចំណាំ</div>
-                <div style="text-align:right">ចំនួន</div>
-                <div></div>
-              </div>
-
-              <div v-for="(it, idx) in rxForm.items" :key="idx" class="rx-item-row">
-                <div class="ix-num">{{ idx+1 }}</div>
-                <div>
-                  <input v-model="it.medicine" placeholder="ឧ. Paracetamol 500mg"/>
-                  <textarea v-model="it.instructions" rows="1" placeholder="កំណត់ចំណាំបន្ថែម..." style="margin-top:4px;min-height:30px"></textarea>
-                </div>
-                <div><input v-model="it.dosage" placeholder="1 គ្រាប់"/></div>
-                <div><input v-model="it.frequency" placeholder="3 ដង/ថ្ងៃ"/></div>
-                <div><input v-model="it.duration" placeholder="5 ថ្ងៃ"/></div>
-                <div><input v-model.number="it.unitPrice" type="number" step="100" placeholder="0"/></div>
-                <div><input v-model.number="it.quantity" type="number" min="0" step="1" placeholder="1" style="text-align:right"/></div>
-                <div><button type="button" class="rx-item-rm" @click="removeRxItem(idx)" :disabled="rxForm.items.length<=1"><i class="fas fa-times"></i></button></div>
+              <!-- Mobile Friendly Input Matrix for Rx Items -->
+              <div class="table-responsive">
+                <table class="patient-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>ឈ្មោះថ្នាំ & បរិយាយ</th>
+                      <th>កម្រិតប្រើ</th>
+                      <th>ប្រេកង់</th>
+                      <th>រយៈពេល</th>
+                      <th>តម្លៃរាយ</th>
+                      <th>ចំនួន</th>
+                      <th>សកម្មភាព</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(it, idx) in rxForm.items" :key="idx">
+                      <td>{{ idx+1 }}</td>
+                      <td>
+                        <input v-model="it.medicine" placeholder="Paracetamol" required style="width: 100%; border: 1.5px solid var(--gray-200); padding: 6px; border-radius: 6px;" />
+                        <textarea v-model="it.instructions" placeholder="របៀបប្រើប្រាស់..." style="width:100%; margin-top:4px; font-size:11px; padding: 4px; border:1px solid var(--gray-200); border-radius:4px;"></textarea>
+                      </td>
+                      <td><input v-model="it.dosage" placeholder="1 គ្រាប់" style="width: 80px; border: 1.5px solid var(--gray-200); padding: 6px; border-radius: 6px;" /></td>
+                      <td><input v-model="it.frequency" placeholder="3 ដង/ថ្ងៃ" style="width: 90px; border: 1.5px solid var(--gray-200); padding: 6px; border-radius: 6px;" /></td>
+                      <td><input v-model="it.duration" placeholder="5 ថ្ងៃ" style="width: 80px; border: 1.5px solid var(--gray-200); padding: 6px; border-radius: 6px;" /></td>
+                      <td><input v-model.number="it.unitPrice" type="number" style="width: 90px; border: 1.5px solid var(--gray-200); padding: 6px; border-radius: 6px; text-align: right;" /></td>
+                      <td><input v-model.number="it.quantity" type="number" min="1" style="width: 60px; border: 1.5px solid var(--gray-200); padding: 6px; border-radius: 6px; text-align: right;" /></td>
+                      <td>
+                        <button type="button" class="rx-item-rm" @click="removeRxItem(idx)" :disabled="rxForm.items.length<=1">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
               <div class="rx-add-row">
@@ -2545,27 +1954,11 @@ body{
               </div>
 
               <div class="rx-total-bar">
-                <div class="rx-total-label"><i class="fas fa-coins"></i> តម្លៃសរុបថ្នាំ (បង្ហាញតែក្នុងវិក្កយបត្រ)</div>
+                <div class="rx-total-label"><i class="fas fa-coins"></i> តម្លៃសរុបថ្នាំ</div>
                 <div class="rx-total-val">{{ fmtMoney(rxSubtotal()) }}</div>
               </div>
-            </div>
-          </div>
 
-          <!-- Notes & Signature -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-pen-fancy"></i></div>
-              <div>
-                <h2>III. កំណត់ចំណាំ & ហត្ថលេខា</h2>
-                <p>Notes & Signature</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="field" style="margin-bottom:18px">
-                <label>កំណត់ចំណាំបន្ថែម</label>
-                <textarea v-model="rxForm.notes" rows="2" placeholder="កំណត់ចំណាំបន្ថែមសម្រាប់អ្នកជំងឺ..."></textarea>
-              </div>
-              <div class="sig-bar">
+              <div class="sig-bar" style="margin-top:20px">
                 <div class="sig-date">
                   <i class="far fa-calendar-alt"></i>
                   ថ្ងៃទី <input v-model="rxForm.signDate" placeholder="DD" style="width:52px"/>
@@ -2578,59 +1971,52 @@ body{
                   <input v-model="rxForm.doctorSign" placeholder="ឈ្មោះគ្រូពេទ្យ"/>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="btn-row">
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-save"></i> រក្សាទុក & បោះពុម្ព
-            </button>
-            <button type="button" class="btn btn-ghost" @click="clearRxForm">
-              <i class="fas fa-eraser"></i> សម្អាតទម្រង់
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- ===== INVOICE FORM ===== -->
-      <div v-show="rxTab==='invNew'">
-        <form @submit.prevent="saveInvoice">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-user-circle"></i></div>
-              <div>
-                <h2>I. ព័ត៌មានអ្នកជំងឺ និងវិក្កយបត្រ</h2>
-                <p>Patient & Invoice Information</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div v-if="!invoiceForm.patientId" class="patient-picker-trigger" @click="openPatientPickerForInv()">
-                <div class="pp-icon"><i class="fas fa-user-plus"></i></div>
-                <div class="pp-text">
-                  <div class="pp-name">ចុចដើម្បីជ្រើសរើសអ្នកជំងឺ</div>
-                  <div class="pp-id">ត្រូវតែជ្រើសរើសមុនពេលចេញវិក្កយបត្រ</div>
-                </div>
-                <i class="fas fa-chevron-right" style="color:var(--gray-400)"></i>
-              </div>
-              <div v-else class="patient-picker-trigger has-patient">
-                <div class="pp-icon"><i class="fas fa-user-check"></i></div>
-                <div class="pp-text">
-                  <div class="pp-name">{{ invoiceForm.patientName }}</div>
-                  <div class="pp-id">
-                    ID: <strong>{{ invoiceForm.patientId }}</strong> ·
-                    {{ invoiceForm.patientAge }}ឆ្នាំ · {{ invoiceForm.patientGender }}
-                    <span v-if="invoiceForm.linkedPrescriptionId"> · ភ្ជាប់វេជ្ជបញ្ជា: {{ invoiceForm.linkedPrescriptionId }}</span>
-                  </div>
-                </div>
-                <button type="button" class="pp-remove" @click="invoiceForm.patientId='';invoiceForm.patientName='';invoiceForm.patientAge='';invoiceForm.patientGender='';invoiceForm.linkedPrescriptionId=''" data-tip="លុបការជ្រើសរើស">
-                  <i class="fas fa-times"></i>
+              <div class="btn-row">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-save"></i> រក្សាទុក &amp; មើលមុនបោះពុម្ព
+                </button>
+                <button type="button" class="btn btn-ghost" @click="clearRxForm">
+                  <i class="fas fa-eraser"></i> សម្អាតទម្រង់
                 </button>
               </div>
+            </form>
+          </div>
 
-              <div class="grid-3" style="margin-top:18px">
+          <!-- Invoice Entry Form -->
+          <div v-show="rxTab==='invNew'">
+            <form @submit.prevent="saveInvoice">
+              <div style="margin-bottom:16px">
+                <label style="display:block;font-size:12px;font-weight:700;color:var(--gray-600);margin-bottom:5px">
+                  ជ្រើសរើសអ្នកជំងឺ <span style="color:var(--red)">*</span>
+                </label>
+                <div v-if="!invoiceForm.patientId" class="patient-picker-trigger" @click="openPatientPickerForInv()">
+                  <div class="pp-icon"><i class="fas fa-user-plus"></i></div>
+                  <div class="pp-text">
+                    <div class="pp-name">ចុចដើម្បីជ្រើសរើសអ្នកជំងឺ</div>
+                    <div class="pp-id">ត្រូវតែជ្រើសរើសមុនពេលចេញវិក្កយបត្រ</div>
+                  </div>
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+                <div v-else class="patient-picker-trigger has-patient">
+                  <div class="pp-icon"><i class="fas fa-user-check"></i></div>
+                  <div class="pp-text">
+                    <div class="pp-name">{{ invoiceForm.patientName }}</div>
+                    <div class="pp-id">
+                      ID: <strong>{{ invoiceForm.patientId }}</strong> · {{ invoiceForm.patientAge }}ឆ្នាំ · {{ invoiceForm.patientGender }}
+                      <span v-if="invoiceForm.linkedPrescriptionId"> · ភ្ជាប់វេជ្ជបញ្ជា: {{ invoiceForm.linkedPrescriptionId }}</span>
+                    </div>
+                  </div>
+                  <button type="button" class="pp-remove" @click="invoiceForm.patientId='';invoiceForm.patientName='';invoiceForm.patientAge='';invoiceForm.patientGender='';invoiceForm.linkedPrescriptionId=''">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid-3" style="margin-top:10px; margin-bottom:20px">
                 <div class="field">
                   <label>ឈ្មោះអ្នកជំងឺ <span class="req">*</span></label>
-                  <input v-model="invoiceForm.patientName" placeholder="ឧ. សុខ សម្បត្តិ" required/>
+                  <input v-model="invoiceForm.patientName" required/>
                 </div>
                 <div class="field">
                   <label>ថ្ងៃចេញវិក្កយបត្រ <span class="req">*</span></label>
@@ -2638,105 +2024,84 @@ body{
                 </div>
                 <div class="field">
                   <label>លេខ ID</label>
-                  <input v-model="invoiceForm.patientId" placeholder="P-1001"/>
+                  <input v-model="invoiceForm.patientId"/>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-list"></i></div>
-              <div>
-                <h2>II. បញ្ជីទំនិញ / សេវាកម្ម</h2>
-                <p>Items / Services</p>
+              <!-- Invoice Item Lines -->
+              <div class="section-label">
+                <i class="fas fa-list"></i> បរិយាយសេវាកម្ម / ទំនិញ
               </div>
-            </div>
-            <div class="card-body">
-              <div class="rx-item-head" style="grid-template-columns:32px 1fr 0.6fr 0.7fr 0.7fr 36px">
-                <div>#</div>
-                <div>បរិយាយ / Description</div>
-                <div style="text-align:right">ចំនួន</div>
-                <div style="text-align:right">តម្លៃរាយ (៛)</div>
-                <div style="text-align:right">សរុប</div>
-                <div></div>
-              </div>
-              <div v-for="(it, idx) in invoiceForm.items" :key="idx" class="rx-item-row" style="grid-template-columns:32px 1fr 0.6fr 0.7fr 0.7fr 36px">
-                <div class="ix-num">{{ idx+1 }}</div>
-                <div><input v-model="it.description" placeholder="ឧ. ថ្នាំ Paracetamol / ពិនិត្យជំងឺ"/></div>
-                <div><input v-model.number="it.quantity" type="number" min="0" step="1" placeholder="1" style="text-align:right"/></div>
-                <div><input v-model.number="it.unitPrice" type="number" step="100" placeholder="0" style="text-align:right"/></div>
-                <div style="text-align:right;padding:8px 10px;font-weight:700;color:var(--teal)">{{ fmtMoney((it.quantity||0)*(it.unitPrice||0)) }}</div>
-                <div><button type="button" class="rx-item-rm" @click="removeInvItem(idx)" :disabled="invoiceForm.items.length<=1"><i class="fas fa-times"></i></button></div>
+
+              <div class="table-responsive">
+                <table class="patient-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>បរិយាយ / Description</th>
+                      <th style="text-align:right">ចំនួន</th>
+                      <th style="text-align:right">តម្លៃរាយ (៛)</th>
+                      <th style="text-align:right">សរុប</th>
+                      <th>សកម្មភាព</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(it, idx) in invoiceForm.items" :key="idx">
+                      <td>{{ idx+1 }}</td>
+                      <td><input v-model="it.description" placeholder="ឧ. ពិនិត្យឈាម / ពិនិត្យជំងឺ" required style="width: 100%; border: 1.5px solid var(--gray-200); padding: 6px; border-radius: 6px;" /></td>
+                      <td><input v-model.number="it.quantity" type="number" min="1" style="width: 80px; border: 1.5px solid var(--gray-200); padding: 6px; border-radius: 6px; text-align: right;" required /></td>
+                      <td><input v-model.number="it.unitPrice" type="number" step="100" style="width: 100px; border: 1.5px solid var(--gray-200); border-radius: 8px; padding: 6px 10px; text-align:right;" required /></td>
+                      <td style="text-align:right; font-weight:700; color:var(--teal)">{{ fmtMoney((it.quantity||0)*(it.unitPrice||0)) }}</td>
+                      <td>
+                        <button type="button" class="rx-item-rm" @click="removeInvItem(idx)" :disabled="invoiceForm.items.length<=1">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
               <div class="rx-add-row">
                 <button type="button" class="btn btn-ghost btn-sm" @click="addInvItem">
-                  <i class="fas fa-plus"></i> បន្ថែមទំនិញ
+                  <i class="fas fa-plus"></i> បន្ថែមបន្ទាត់
                 </button>
               </div>
 
-              <!-- Summary -->
+              <!-- Totals Panel -->
               <div class="inv-summary">
                 <div class="inv-cell">
-                  <label><i class="fas fa-coins"></i> តម្លៃសរុបរង (Subtotal)</label>
+                  <label>សរុបរង (Subtotal)</label>
                   <div style="font-size:18px;font-weight:700;color:var(--navy);padding:4px 0">{{ fmtMoney(invSubtotal()) }}</div>
                 </div>
                 <div class="inv-cell">
-                  <label><i class="fas fa-percent"></i> បញ្ចុះតម្លៃ (Discount)</label>
-                  <input v-model.number="invoiceForm.discount" type="number" min="0" step="100" placeholder="0"/>
+                  <label>បញ្ចុះតម្លៃ (Discount)</label>
+                  <input v-model.number="invoiceForm.discount" type="number" min="0" step="100"/>
                 </div>
                 <div class="inv-cell">
-                  <label><i class="fas fa-receipt"></i> ពន្ធ (Tax)</label>
-                  <input v-model.number="invoiceForm.tax" type="number" min="0" step="100" placeholder="0"/>
+                  <label>ពន្ធ (Tax)</label>
+                  <input v-model.number="invoiceForm.tax" type="number" min="0" step="100"/>
                 </div>
                 <div class="inv-cell inv-total-cell">
-                  <label><i class="fas fa-money-bill-wave"></i> សរុបត្រូវបង់ (Total)</label>
+                  <label>សរុបត្រូវបង់ (Total)</label>
                   <div class="inv-total-val">{{ fmtMoney(invTotal()) }}</div>
                 </div>
                 <div class="inv-cell">
-                  <label><i class="fas fa-hand-holding-usd"></i> បានបង់ (Paid)</label>
-                  <input v-model.number="invoiceForm.paidAmount" type="number" min="0" step="100" placeholder="0"/>
+                  <label>បានបង់ (Paid)</label>
+                  <input v-model.number="invoiceForm.paidAmount" type="number" min="0" step="100"/>
                 </div>
                 <div class="inv-cell">
-                  <label><i class="fas fa-credit-card"></i> វិធីបង់ប្រាក់</label>
+                  <label>វិធីបង់ប្រាក់</label>
                   <select v-model="invoiceForm.paymentMethod">
                     <option>សាច់ប្រាក់</option>
                     <option>ABA</option>
                     <option>Wing</option>
-                    <option>ACLEDA</option>
                     <option>កាត</option>
-                    <option>ផ្សេងៗ</option>
                   </select>
                 </div>
-                <div class="inv-cell" :style="invStatus()==='paid'?'background:linear-gradient(135deg,#d1fae5,#f0fdf4);border-color:var(--green)':invStatus()==='partial'?'background:linear-gradient(135deg,#fef3c7,#fffbeb);border-color:var(--gold)':'background:linear-gradient(135deg,#fee2e2,#fef2f2);border-color:var(--red)'">
-                  <label>ស្ថានភាព</label>
-                  <div :class="'inv-status '+invStatus()" style="margin-top:2px">
-                    <i :class="invStatus()==='paid'?'fas fa-check-circle':invStatus()==='partial'?'fas fa-clock':'fas fa-exclamation-circle'"></i>
-                    {{ invStatusLabel(invStatus()) }}
-                  </div>
-                  <div v-if="invStatus()==='partial'" style="font-size:11px;color:#b45309;margin-top:4px">
-                    នៅខ្វះ: <strong>{{ fmtMoney(invBalance()) }}</strong>
-                  </div>
-                </div>
-                <div class="inv-cell">
-                  <label>កំណត់ចំណាំ</label>
-                  <input v-model="invoiceForm.notes" placeholder="កំណត់ចំណាំ..."/>
-                </div>
               </div>
-            </div>
-          </div>
 
-          <div class="card">
-            <div class="card-header">
-              <div class="card-header-icon"><i class="fas fa-pen-fancy"></i></div>
-              <div>
-                <h2>III. ហត្ថលេខា</h2>
-                <p>Signature</p>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="sig-bar">
+              <div class="sig-bar" style="margin-top:20px">
                 <div class="sig-date">
                   <i class="far fa-calendar-alt"></i>
                   ថ្ងៃទី <input v-model="invoiceForm.signDate" placeholder="DD" style="width:52px"/>
@@ -2745,49 +2110,31 @@ body{
                 </div>
                 <div class="sig-doctor">
                   <i class="fas fa-user-md"></i>
-                  គ្រូពេទ្យ:
+                  ហត្ថលេខាគ្រូពេទ្យ:
                   <input v-model="invoiceForm.doctorSign" placeholder="ឈ្មោះគ្រូពេទ្យ"/>
                 </div>
               </div>
-            </div>
+
+              <div class="btn-row">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-save"></i> រក្សាទុក &amp; បោះពុម្ព
+                </button>
+              </div>
+            </form>
           </div>
 
-          <div class="btn-row">
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-save"></i> រក្សាទុក & បោះពុម្ព
-            </button>
-            <button type="button" class="btn btn-ghost" @click="clearInvForm">
-              <i class="fas fa-eraser"></i> សម្អាតទម្រង់
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- ===== RX LIST ===== -->
-      <div v-show="rxTab==='rxList'" class="fade-in">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-header-icon"><i class="fas fa-list-ul"></i></div>
-            <div>
-              <h2>បញ្ជីវេជ្ជបញ្ជា</h2>
-              <p>Prescription Records</p>
-            </div>
-          </div>
-          <div class="card-body">
+          <!-- Rx Index List -->
+          <div v-show="rxTab==='rxList'">
             <div class="search-bar">
               <div class="search-wrap">
                 <i class="fas fa-search"></i>
                 <input v-model="rxSearchQuery" placeholder="ស្វែងរកឈ្មោះ, ID, ថ្ងៃ..."/>
               </div>
-              <button class="btn btn-primary btn-sm" @click="rxTab='rxNew';clearRxForm()">
-                <i class="fas fa-plus"></i> វេជ្ជបញ្ជាថ្មី
-              </button>
             </div>
 
             <div v-if="filteredPrescriptions.length === 0" class="empty-state">
               <i class="fas fa-prescription-bottle-alt"></i>
               <p>មិនទាន់មានវេជ្ជបញ្ជាទេ</p>
-              <small>ចាប់ផ្ដើមដោយចេញវេជ្ជបញ្ជាថ្មី</small>
             </div>
 
             <div v-else class="history-grid">
@@ -2797,68 +2144,50 @@ body{
                   <span class="rc-date"><i class="far fa-calendar-alt"></i> {{ rx.date }}</span>
                 </div>
                 <div class="rc-name">{{ rx.patientName }}</div>
-                <div class="rc-meta">
-                  <i class="fas fa-id-badge"></i> {{ rx.patientId || '—' }}
-                  <span v-if="rx.diagnosis"> · <i class="fas fa-notes-medical" style="color:var(--gold)"></i> {{ rx.diagnosis.length > 40 ? rx.diagnosis.slice(0,40)+'…' : rx.diagnosis }}</span>
-                </div>
+                <div class="rc-meta"><i class="fas fa-id-badge"></i> {{ rx.patientId || '—' }}</div>
                 <div class="rc-stats">
                   <div class="rc-stat">
                     <div class="rc-stat-val">{{ rx.items.length }}</div>
-                    <div class="rc-stat-label">ថ្នាំ</div>
+                    <div class="rc-stat-label">មុខថ្នាំ</div>
                   </div>
                   <div class="rc-stat">
-                    <div class="rc-stat-val">{{ fmtMoney(rx.totalAmount||0) }}</div>
+                    <div class="rc-stat-val">{{ fmtMoney(rx.totalAmount || 0) }}</div>
                     <div class="rc-stat-label">តម្លៃសរុប</div>
                   </div>
                 </div>
                 <div class="rc-actions">
-                  <button class="btn btn-success btn-xs" @click="openRxPrint(rx)" data-tip="បោះពុម្ព">
+                  <button class="btn btn-success btn-xs" @click="openRxPrint(rx)" title="បោះពុម្ព">
                     <i class="fas fa-print"></i>
                   </button>
-                  <button class="btn btn-primary btn-xs" @click="loadPrescription(rx)" data-tip="កែប្រែ">
+                  <button class="btn btn-primary btn-xs" @click="loadPrescription(rx)" title="កែប្រែ">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-warning btn-xs" @click="createInvoiceFromPrescription(rx)" data-tip="ចេញវិក្កយបត្រ">
+                  <button class="btn btn-warning btn-xs" @click="createInvoiceFromPrescription(rx)" title="ចេញវិក្កយបត្រ">
                     <i class="fas fa-file-invoice-dollar"></i>
                   </button>
-                  <button class="btn btn-danger btn-xs" @click="deletePrescription(rx.id)" data-tip="លុប">
+                  <button class="btn btn-danger btn-xs" @click="deletePrescription(rx.id)" title="លុប">
                     <i class="fas fa-trash"></i>
                   </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- ===== INVOICE LIST ===== -->
-      <div v-show="rxTab==='invList'" class="fade-in">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-header-icon"><i class="fas fa-list-ul"></i></div>
-            <div>
-              <h2>បញ្ជីវិក្កយបត្រ</h2>
-              <p>Invoice Records</p>
-            </div>
-          </div>
-          <div class="card-body">
+          <!-- Invoice Index List -->
+          <div v-show="rxTab==='invList'">
             <div class="search-bar">
               <div class="search-wrap">
                 <i class="fas fa-search"></i>
-                <input v-model="invSearchQuery" placeholder="ស្វែងរកឈ្មោះ, ID, ថ្ងៃ, ស្ថានភាព..."/>
+                <input v-model="invSearchQuery" placeholder="ស្វែងរកឈ្មោះ, ID, ថ្ងៃ..."/>
               </div>
-              <button class="btn btn-primary btn-sm" @click="rxTab='invNew';clearInvForm()">
-                <i class="fas fa-plus"></i> វិក្កយបត្រថ្មី
-              </button>
             </div>
 
             <div v-if="filteredInvoices.length === 0" class="empty-state">
               <i class="fas fa-file-invoice"></i>
               <p>មិនទាន់មានវិក្កយបត្រទេ</p>
-              <small>ចាប់ផ្ដើមដោយចេញវិក្កយបត្រថ្មី</small>
             </div>
 
-            <div v-else>
+            <div v-else class="table-responsive">
               <table class="patient-table">
                 <thead>
                   <tr>
@@ -2878,7 +2207,7 @@ body{
                 <tbody>
                   <tr v-for="(inv, idx) in filteredInvoices" :key="inv.id">
                     <td><span class="badge badge-navy">{{ idx+1 }}</span></td>
-                    <td><strong style="color:var(--navy)">{{ inv.id }}</strong></td>
+                    <td><strong>{{ inv.id }}</strong></td>
                     <td><span class="badge badge-gold">{{ inv.date }}</span></td>
                     <td><strong style="color:var(--navy)">{{ inv.patientName }}</strong></td>
                     <td><span class="badge badge-teal">{{ inv.patientId || '—' }}</span></td>
@@ -2888,15 +2217,14 @@ body{
                     <td :style="(inv.balance||0)>0?'color:var(--red-dark);font-weight:700':'color:var(--gray-400)'">{{ fmtMoney(inv.balance||0) }}</td>
                     <td>
                       <span :class="'inv-status '+inv.status">
-                        <i :class="inv.status==='paid'?'fas fa-check-circle':inv.status==='partial'?'fas fa-clock':'fas fa-exclamation-circle'"></i>
                         {{ invStatusLabel(inv.status) }}
                       </span>
                     </td>
                     <td>
                       <div style="display:flex;gap:6px;justify-content:flex-end">
-                        <button class="btn btn-success btn-xs" @click="openInvPrint(inv)" data-tip="បោះពុម្ព"><i class="fas fa-print"></i></button>
-                        <button class="btn btn-ghost btn-xs" @click="loadInvoice(inv)" data-tip="កែប្រែ"><i class="fas fa-edit"></i></button>
-                        <button class="btn btn-danger btn-xs" @click="deleteInvoice(inv.id)" data-tip="លុប"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-success btn-xs" @click="openInvPrint(inv)"><i class="fas fa-print"></i></button>
+                        <button class="btn btn-ghost btn-xs" @click="loadInvoice(inv)"><i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger btn-xs" @click="deleteInvoice(inv.id)"><i class="fas fa-trash"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -2904,81 +2232,55 @@ body{
               </table>
             </div>
           </div>
+
         </div>
       </div>
+    </div>
 
-    </div><!-- end rx tab -->
+  </div>
 
-  </div><!-- end app-wrapper -->
-
-  <!-- ===== PATIENT PICKER MODAL ===== -->
+  <!-- ===== PATIENT SELECTION MODAL WINDOW ===== -->
   <div v-if="pickerOpen" class="modal-backdrop" @click.self="closePatientPicker">
     <div class="modal" style="max-width:560px">
       <div class="modal-head">
         <div class="modal-head-icon"><i class="fas fa-user-plus"></i></div>
         <div>
           <h3>ជ្រើសរើសអ្នកជំងឺ</h3>
-          <p v-if="pickerSource==='rx'">ជ្រើសរើសអ្នកជំងឺដើម្បីចេញវេជ្ជបញ្ជា</p>
-          <p v-else-if="pickerSource==='inv'">ជ្រើសរើសអ្នកជំងឺដើម្បីចេញវិក្កយបត្រ</p>
-          <p v-else>ជ្រើសរើសអ្នកជំងឺដែលត្រូវពិនិត្យឈាម</p>
+          <p>ស្វែងរកនិងភ្ជាប់អ្នកជំងឺដែលត្រូវចាត់ចែង</p>
         </div>
         <button class="modal-close" @click="closePatientPicker"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body">
-        <div class="picker-search">
-          <div class="search-wrap">
-            <i class="fas fa-search"></i>
-            <input v-model="pickerSearchQuery" placeholder="ស្វែងរកឈ្មោះ, ID, ទូរស័ព្ទ..." style="width:100%;padding:11px 14px 11px 40px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;background:var(--gray-50);outline:none;" @keyup.enter="pickerResults[0] && selectPatientForBlood(pickerResults[0])"/>
-          </div>
+        <div class="search-wrap" style="margin-bottom:14px">
+          <i class="fas fa-search"></i>
+          <input v-model="pickerSearchQuery" placeholder="ស្វែងរកឈ្មោះ, ID, ទូរស័ព្ទ..."/>
         </div>
         <div v-if="pickerResults.length === 0" class="picker-empty">
           <i class="fas fa-user-slash"></i>
           <p>មិនរកឃើញអ្នកជំងឺ</p>
-          <small>សូមបន្ថែមអ្នកជំងឺថ្មីមុន</small>
         </div>
-        <div v-else class="picker-results">
-          <div v-for="p in pickerResults" :key="p.patientId"
-            class="picker-item" :class="{selected: linkedPatient && linkedPatient.patientId === p.patientId}"
-            @click="selectPatientForBlood(p)">
+        <div v-else class="picker-results" style="max-height: 400px; overflow-y: auto;">
+          <div v-for="p in pickerResults" :key="p.patientId" class="picker-item" @click="selectPatientForBlood(p)">
             <div class="pi-avatar">{{ getInitials(p.name) }}</div>
             <div class="pi-info">
               <div class="pi-name">{{ p.name }}</div>
-              <div class="pi-id">
-                <i class="fas fa-id-badge"></i> {{ p.patientId }} · {{ p.age }}ឆ្នាំ · {{ p.gender }}
-                <span v-if="p.phone"> · <i class="fas fa-phone"></i> {{ p.phone }}</span>
-              </div>
-              <div class="pi-meta">
-                ពិនិត្យចុងក្រោយ: {{ getLastVisitDate(p) }}
-              </div>
-              <div v-if="p.visits.length >= 2" class="pi-badge gold">
-                <i class="fas fa-redo" style="font-size:9px"></i> អ្នកជំងឺត្រឡប់
-              </div>
+              <div class="pi-id">ID: {{ p.patientId }} · {{ p.age }}ឆ្នាំ · {{ p.gender }}</div>
             </div>
-            <div v-if="linkedPatient && linkedPatient.patientId === p.patientId" class="pi-check">
-              <i class="fas fa-check"></i>
-            </div>
+            <i class="fas fa-chevron-right" style="color:var(--gray-300)"></i>
           </div>
         </div>
-      </div>
-      <div class="modal-foot">
-        <button class="btn btn-ghost" @click="closePatientPicker">
-          <i class="fas fa-times"></i> បោះបង់
-        </button>
-        <button class="btn btn-primary" :disabled="!linkedPatient" @click="closePatientPicker">
-          <i class="fas fa-check"></i> យល់ព្រម
-        </button>
       </div>
     </div>
   </div>
 
-  <!-- ===== HISTORY DETAIL MODAL ===== -->
+  <!-- ===== TIMELINE HISTORY DIALOG ===== -->
   <div v-if="historyModalOpen" class="modal-backdrop" @click.self="closeHistoryModal">
     <div class="modal">
       <div class="modal-head">
         <div class="modal-head-icon"><i class="fas fa-history"></i></div>
         <div>
           <h3>ប្រវត្តិការពិនិត្យ · {{ historyModalPatient && historyModalPatient.name }}</h3>
-          <p>កំណត់ត្រាការពិនិត្យទាំងអស់ · Visit History Timeline</p>
+          <p>កំណត់ត្រាការពិនិត្យទាំងអស់ Timeline</p>
         </div>
         <button class="modal-close" @click="closeHistoryModal"><i class="fas fa-times"></i></button>
       </div>
@@ -2991,30 +2293,8 @@ body{
               <span><i class="fas fa-id-badge"></i> {{ historyModalPatient.patientId }}</span>
               <span><i class="fas fa-birthday-cake"></i> {{ historyModalPatient.age }}ឆ្នាំ</span>
               <span><i class="fas fa-venus-mars"></i> {{ historyModalPatient.gender }}</span>
-              <span v-if="historyModalPatient.phone"><i class="fas fa-phone"></i> {{ historyModalPatient.phone }}</span>
             </div>
           </div>
-          <div class="profile-stats">
-            <div class="profile-stat">
-              <div class="profile-stat-val">{{ historyModalPatient.visits.length }}</div>
-              <div class="profile-stat-label">លើកពិនិត្យ</div>
-            </div>
-            <div class="profile-stat" style="background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.3)">
-              <div class="profile-stat-val" style="color:#fca5a5">{{ getPatientBloodTestCount(historyModalPatient) }}</div>
-              <div class="profile-stat-label" style="color:rgba(255,255,255,.7)">លទ្ធផលឈាម</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- LINKED BLOOD TESTS -->
-        <div v-if="getPatientBloodTestList(historyModalPatient).length" class="linked-tests-strip">
-          <i class="fas fa-vial" style="color:var(--teal);font-size:18px"></i>
-          <span class="lts-label">លទ្ធផលឈាម:</span>
-          <span class="lts-count">{{ getPatientBloodTestList(historyModalPatient).length }}</span>
-          <span style="font-size:12px;color:var(--gray-600)">កំណត់ត្រាត្រូវបានភ្ជាប់</span>
-          <button type="button" class="lts-btn" @click="viewPatientBloodTests(historyModalPatient)">
-            <i class="fas fa-eye"></i> មើលទាំងអស់
-          </button>
         </div>
 
         <div v-if="historyModalPatient.visits.length === 0" class="empty-state">
@@ -3023,22 +2303,13 @@ body{
         </div>
 
         <div v-else class="timeline">
-          <div v-for="(v, i) in [...historyModalPatient.visits].reverse()" :key="i"
-            class="tl-item" :class="i === 0 ? 'latest' : (i === 1 ? 'latest-2' : '')">
-            <div class="tl-card" :class="{latest: i === 0}">
+          <div v-for="(v, i) in [...historyModalPatient.visits].reverse()" :key="i" class="tl-item">
+            <div class="tl-card">
               <div class="tl-head">
-                <span class="tl-visit-num">
-                  <i class="fas fa-calendar-check"></i> លើកទី {{ historyModalPatient.visits.length - i }} / {{ historyModalPatient.visits.length }}
-                </span>
-                <span class="tl-date">
-                  <i class="far fa-calendar-alt"></i>
-                  {{ v.admitDate || '-' }} <span v-if="v.admitTime">· {{ v.admitTime }}</span>
-                </span>
+                <span class="tl-visit-num">លើកទី {{ historyModalPatient.visits.length - i }}</span>
+                <span class="tl-date"><i class="far fa-calendar-alt"></i> {{ v.admitDate || '-' }}</span>
               </div>
-              <div class="tl-doctor" v-if="v.doctorSign">
-                <i class="fas fa-user-md"></i> {{ v.doctorSign }}
-              </div>
-              <div class="tl-row" v-if="v.motif || v.histoire || v.diagnostic || v.traitement">
+              <div class="tl-row" v-if="v.motif || v.diagnostic || v.traitement">
                 <div v-if="v.motif" style="display:contents">
                   <div class="tl-lbl">មូលហេតុ:</div>
                   <div class="tl-val">{{ v.motif }}</div>
@@ -3054,10 +2325,7 @@ body{
               </div>
               <div class="tl-actions">
                 <button class="btn btn-ghost btn-xs" @click="viewVisitInForm(historyModalPatient, historyModalPatient.visits.length - 1 - i)">
-                  <i class="fas fa-eye"></i> មើលលម្អិត
-                </button>
-                <button class="btn btn-ghost btn-xs" @click="editVisitInForm(historyModalPatient, historyModalPatient.visits.length - 1 - i)">
-                  <i class="fas fa-edit"></i> កែប្រែ
+                  <i class="fas fa-eye"></i> មើល
                 </button>
                 <button class="btn btn-danger btn-xs" @click="deleteVisit(historyModalPatient, historyModalPatient.visits.length - 1 - i)">
                   <i class="fas fa-trash"></i> លុបលើកនេះ
@@ -3067,37 +2335,64 @@ body{
           </div>
         </div>
       </div>
-      <div class="modal-foot" v-if="historyModalPatient">
-        <button class="btn btn-warning" @click="startNewVisitForExisting(historyModalPatient);closeHistoryModal()">
-          <i class="fas fa-plus"></i> ពិនិត្យលើកថ្មី
-        </button>
-        <button class="btn btn-primary" @click="startBloodTestForPatient(historyModalPatient)">
-          <i class="fas fa-vial"></i> បញ្ចូលលទ្ធផលឈាម
-        </button>
-        <button class="btn btn-success" @click="startPrescriptionForPatient(historyModalPatient);closeHistoryModal()">
-          <i class="fas fa-prescription"></i> ចេញវេជ្ជបញ្ជា
-        </button>
-        <button class="btn btn-ghost" @click="closeHistoryModal">
-          <i class="fas fa-times"></i> បិទ
-        </button>
+    </div>
+  </div>
+
+  <!-- ===== BLOOD TEST DETAILED MODAL WINDOW ===== -->
+  <div v-if="bloodTestDetailOpen" class="modal-backdrop" @click.self="closeBloodTestDetail">
+    <div class="modal" style="max-width:700px">
+      <div class="modal-head">
+        <div class="modal-head-icon"><i class="fas fa-vial"></i></div>
+        <div>
+          <h3>ប្រវត្តិពិនិត្យឈាម · {{ bloodTestDetailPatient && bloodTestDetailPatient.name }}</h3>
+          <p>កំណត់ត្រាលទ្ធផលឈាមទាំងអស់</p>
+        </div>
+        <button class="modal-close" @click="closeBloodTestDetail"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" v-if="bloodTestDetailPatient">
+        <div v-if="getPatientBloodTestList(bloodTestDetailPatient).length === 0" class="empty-state">
+          <i class="fas fa-vials"></i>
+          <p>មិនទាន់មានលទ្ធផលឈាមទេ</p>
+        </div>
+        <div v-else>
+          <div v-for="bt in getPatientBloodTestList(bloodTestDetailPatient)" :key="bt.id" class="bt-mini-card" style="border: 1px solid var(--gray-200); padding: 14px; border-radius: 8px; margin-bottom: 10px;">
+            <div class="bt-mini-head" style="display:flex; justify-content:space-between; margin-bottom: 8px;">
+              <span class="bt-mini-cat badge badge-teal">{{ getCategoryLabel(bt.testCategory) }}</span>
+              <span class="bt-mini-date"><i class="far fa-calendar-alt"></i> {{ bt.testDate }}</span>
+            </div>
+            <div class="bt-mini-summary" style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span v-for="p in getParamsForCategory(bt.testCategory)" :key="p.key" class="bt-mini-param" :class="getParamStatus(bt.results[p.key], p.range)" style="font-size:12px; background:var(--gray-50); padding:4px 8px; border-radius:4px;">
+                {{ p.label }}: {{ bt.results[p.key] || '—' }}
+              </span>
+            </div>
+            <div class="bt-mini-foot" style="display:flex; justify-content:space-between; margin-top:10px; padding-top:8px; border-top:1px dashed var(--gray-200);">
+              <span class="bt-doctor"><i class="fas fa-user-md"></i> {{ bt.doctorSign || '—' }}</span>
+              <div class="bt-actions">
+                <button class="btn btn-ghost btn-xs" @click="loadBloodTestFromModal(bt)">
+                  <i class="fas fa-edit"></i> កែប្រែ
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== PRESCRIPTION PRINT MODAL ===== -->
+  <!-- ===== PRESCRIPTION PRINT WINDOW ===== -->
   <div v-if="rxPrintOpen" class="modal-backdrop" @click.self="closeRxPrint">
     <div class="modal" style="max-width:820px">
       <div class="modal-head">
         <div class="modal-head-icon"><i class="fas fa-prescription"></i></div>
         <div>
           <h3>វេជ្ជបញ្ជា · {{ rxPrintData && rxPrintData.id }}</h3>
-          <p>មើលមុនបោះពុម្ព · Print Preview</p>
+          <p>មើលមុនបោះពុម្ព</p>
         </div>
         <button class="modal-close" @click="closeRxPrint"><i class="fas fa-times"></i></button>
       </div>
       <div class="modal-body" style="background:#f1f5f9;padding:24px" v-if="rxPrintData">
         <div class="rx-paper">
-          <div class="rx-paper-watermark">មន្ទីរសុខាភិបាល</div>
+          <div class="rx-paper-watermark">ឡាមស៊ីលីន</div>
           <div class="rx-paper-head">
             <div class="rx-paper-logo"><i class="fas fa-heartbeat"></i></div>
             <div class="rx-paper-clinic">
@@ -3119,11 +2414,11 @@ body{
           </div>
 
           <div v-if="rxPrintData.diagnosis" class="rx-paper-dx">
-            <strong><i class="fas fa-stethoscope"></i> រោគវិនិច្ឆ័យ / Diagnosis</strong>
+            <strong>រោគវិនិច្ឆ័យ / Diagnosis</strong>
             <p>{{ rxPrintData.diagnosis }}</p>
           </div>
 
-          <div class="rx-paper-rx">℞</div>
+          <div class="rx-paper-rx">Rx</div>
           <table class="rx-paper-table">
             <thead>
               <tr>
@@ -3147,10 +2442,6 @@ body{
             </tbody>
           </table>
 
-          <div v-if="rxPrintData.notes" class="rx-paper-notes">
-            <strong><i class="fas fa-sticky-note"></i> កំណត់ចំណាំ:</strong> {{ rxPrintData.notes }}
-          </div>
-
           <div class="rx-paper-foot">
             <div class="foot-block">
               <strong>ថ្ងៃទី {{ rxPrintData.signDate }} ខែ {{ rxPrintData.signMonth }} ឆ្នាំ {{ rxPrintData.signYear }}</strong>
@@ -3167,24 +2458,18 @@ body{
         <button class="btn btn-success" @click="window.print()">
           <i class="fas fa-print"></i> បោះពុម្ព
         </button>
-        <button class="btn btn-warning" @click="createInvoiceFromPrescription(rxPrintData);closeRxPrint()">
-          <i class="fas fa-file-invoice-dollar"></i> ចេញវិក្កយបត្រ
-        </button>
-        <button class="btn btn-ghost" @click="closeRxPrint">
-          <i class="fas fa-times"></i> បិទ
-        </button>
       </div>
     </div>
   </div>
 
-  <!-- ===== INVOICE PRINT MODAL ===== -->
+  <!-- ===== INVOICE PRINT WINDOW ===== -->
   <div v-if="invPrintOpen" class="modal-backdrop" @click.self="closeInvPrint">
     <div class="modal" style="max-width:820px">
       <div class="modal-head">
         <div class="modal-head-icon"><i class="fas fa-file-invoice-dollar"></i></div>
         <div>
           <h3>វិក្កយបត្រ · {{ invPrintData && invPrintData.id }}</h3>
-          <p>មើលមុនបោះពុម្ព · Print Preview</p>
+          <p>មើលមុនបោះពុម្ព</p>
         </div>
         <button class="modal-close" @click="closeInvPrint"><i class="fas fa-times"></i></button>
       </div>
@@ -3201,9 +2486,6 @@ body{
               <h3>វិក្កយបត្រ</h3>
               <div>No: <strong>{{ invPrintData.id }}</strong></div>
               <div>កាលបរិច្ឆេទ: {{ invPrintData.date }}</div>
-              <div v-if="invPrintData.linkedPrescriptionId" style="margin-top:4px">
-                <span class="rx-paper-status paid"><i class="fas fa-link"></i> {{ invPrintData.linkedPrescriptionId }}</span>
-              </div>
             </div>
           </div>
 
@@ -3264,24 +2546,6 @@ body{
             </table>
           </div>
 
-          <div style="display:flex;gap:14px;align-items:center;margin-bottom:14px;flex-wrap:wrap">
-            <div>
-              <span style="font-size:11px;color:var(--gray-500);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-right:8px">ស្ថានភាព:</span>
-              <span :class="'rx-paper-status '+invPrintData.status">
-                <i :class="invPrintData.status==='paid'?'fas fa-check-circle':invPrintData.status==='partial'?'fas fa-clock':'fas fa-exclamation-circle'"></i>
-                {{ invStatusLabel(invPrintData.status) }}
-              </span>
-            </div>
-            <div>
-              <span style="font-size:11px;color:var(--gray-500);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-right:8px">វិធីបង់:</span>
-              <strong style="color:var(--navy)">{{ invPrintData.paymentMethod }}</strong>
-            </div>
-          </div>
-
-          <div v-if="invPrintData.notes" class="rx-paper-notes">
-            <strong><i class="fas fa-sticky-note"></i> កំណត់ចំណាំ:</strong> {{ invPrintData.notes }}
-          </div>
-
           <div class="rx-paper-foot">
             <div class="foot-block">
               <strong>ថ្ងៃទី {{ invPrintData.signDate }} ខែ {{ invPrintData.signMonth }} ឆ្នាំ {{ invPrintData.signYear }}</strong>
@@ -3298,59 +2562,38 @@ body{
         <button class="btn btn-success" @click="window.print()">
           <i class="fas fa-print"></i> បោះពុម្ព
         </button>
-        <button class="btn btn-ghost" @click="closeInvPrint">
-          <i class="fas fa-times"></i> បិទ
-        </button>
       </div>
     </div>
   </div>
 
-</div><!-- end #app -->
+</div>
 
+<!-- Vue 2 Production Engine -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
-<script>
-const BLOOD_PARAMS={
-  CBC:[
-    {key:'wbc',label:'WBC (កោសិកាឈាមស)',range:{min:4.0,max:11.0,unit:'x10³/μL'}},
-    {key:'rbc',label:'RBC (កោសិកាឈាមក្រហម)',range:{min:3.8,max:5.9,unit:'M/μL'}},
-    {key:'hgb',label:'HGB (ហេម៉ូក្លូប៊ីន)',range:{min:12.0,max:17.5,unit:'g/dL'}},
-    {key:'hct',label:'HCT (ហេម៉ាតូក្រីត)',range:{min:36,max:53,unit:'%'}},
-    {key:'plt',label:'PLT (ប្លាកែត)',range:{min:150,max:400,unit:'x10³/μL'}}
-  ],
-  Glucose:[
-    {key:'glucose',label:'គ្លុយកូស (Fasting)',range:{min:70,max:100,unit:'mg/dL'}},
-    {key:'hba1c',label:'HbA1c (ជាតិស្ករលើសារធាតុក្រហម)',range:{min:0,max:5.7,unit:'%'}}
-  ],
-  Lipid:[
-    {key:'cholesterol',label:'កូលេស្តេរ៉ុលសរុប (Cholesterol)',range:{min:0,max:200,unit:'mg/dL'}},
-    {key:'triglyceride',label:'ទ្រីគ្លីសេរីត (Triglyceride)',range:{min:0,max:150,unit:'mg/dL'}},
-    {key:'hdl',label:'HDL',range:{min:40,max:999,unit:'mg/dL'}},
-    {key:'ldl',label:'LDL',range:{min:0,max:100,unit:'mg/dL'}}
-  ],
-  Liver:[
-    {key:'alt',label:'ALT (SGPT)',range:{min:7,max:56,unit:'U/L'}},
-    {key:'ast',label:'AST (SGOT)',range:{min:10,max:40,unit:'U/L'}},
-    {key:'bilirubin',label:'ប៊ីលីរូប៊ីន (Bilirubin)',range:{min:0.1,max:1.2,unit:'mg/dL'}}
-  ],
-  Kidney:[
-    {key:'urea',label:'អ៊ុយរ៉េ (BUN)',range:{min:7,max:20,unit:'mg/dL'}},
-    {key:'creatinine',label:'ក្រេអាទីនីន (Creatinine)',range:{min:0.7,max:1.3,unit:'mg/dL'}}
-  ],
-  Uric:[
-    {key:'uricAcid',label:'អាស៊ីតយូរីក (Uric Acid)',range:{min:2.4,max:7.0,unit:'mg/dL'}}
-  ]
-};
-const PROFILE_FIELDS=['patientId','name','age','gender','nationality','phone','company'];
-const VISIT_FIELDS=[
-  'admitDate','admitTime','dischargeDate','dischargeTime','company2',
-  'motif','histoire','actd','examenClinique',
-  'ta','pouls','temp','rr','spo2','sf','sp',
-  'digestive','respiratoire','cardio','autre',
-  'diagnostic','paraclinique','traitement','woundDesc',
-  'woundPoints','signDate','signMonth','signYear','doctorSign'
-];
 
-new Vue({
+<!-- Firebase Modular SDK Script Elements -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+// Exact Firebase Project Settings from lin-data-tranfer
+const firebaseConfig = {
+  apiKey: "AIzaSyAAf_rnD6_uxgo9NigWwbnPLg2cWtmIpHQ",
+  authDomain: "lin-data-tranfer.firebaseapp.com",
+  projectId: "lin-data-tranfer",
+  storageBucket: "lin-data-tranfer.firebasestorage.app",
+  messagingSenderId: "954694788121",
+  appId: "1:954694788121:web:bf5c63dbc9d12aae803688"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const appId = 'lin-data-tranfer';
+
+// Start App Context Initialization
+window.appInstance = new Vue({
   el:'#app',
   data:{
     isLoggedIn:false,
@@ -3367,7 +2610,7 @@ new Vue({
       patientId:'',company2:'',admitDate:'',admitTime:'',dischargeDate:'',dischargeTime:'',
       motif:'',histoire:'',actd:'',examenClinique:'',
       ta:'',pouls:'',temp:'',rr:'',spo2:'',sf:'',sp:'',
-      digestive:'',respiratoire:'',cardio:'',autre:'',
+      digestive:'',respiratoire','cardio':'',autre:'',
       diagnostic:'',paraclinique:'',traitement:'',
       woundDesc:'',signDate:'',signMonth:'',signYear:'2026',doctorSign:''
     },
@@ -3403,90 +2646,44 @@ new Vue({
     historyFilter:'all',
     historyModalOpen:false,
     historyModalPatient:null,
-    // Patient picker (for blood test)
     pickerOpen:false,
     pickerSource:'blood',
     pickerSearchQuery:'',
-    // Currently linked patient (for blood test)
     linkedPatient:null,
-    // Blood test by patient view
     bloodByPatientSearch:'',
-    // Blood test detail modal
     bloodTestDetailOpen:false,
     bloodTestDetailPatient:null,
-    // ===== PRESCRIPTION & INVOICE STATE =====
     rxTab:'rxNew',
     prescriptions:[],
     invoices:[],
     rxForm:{
-      id:'',
-      patientId:'',
-      patientName:'',
-      patientAge:'',
-      patientGender:'',
-      doctorSign:'',
-      diagnosis:'',
-      date:'',
-      items:[
-        {medicine:'',dosage:'',frequency:'',duration:'',instructions:'',quantity:1,unitPrice:0}
-      ],
-      notes:'',
-      signDate:'',
-      signMonth:'',
-      signYear:'2026',
-      linkedVisit:''
+      id:'',patientId:'',patientName:'',patientAge:'',patientGender:'',doctorSign:'',
+      diagnosis:'',date:'',items:[{medicine:'',dosage:'',frequency:'',duration:'',instructions:'',quantity:1,unitPrice:0}],
+      notes:'',signDate:'',signMonth:'',signYear:'2026'
     },
     invoiceForm:{
-      id:'',
-      patientId:'',
-      patientName:'',
-      patientAge:'',
-      patientGender:'',
-      doctorSign:'',
-      date:'',
-      items:[
-        {description:'',quantity:1,unitPrice:0}
-      ],
-      discount:0,
-      tax:0,
-      paidAmount:0,
-      paymentMethod:'សាច់ប្រាក់',
-      status:'unpaid',
-      notes:'',
-      linkedPrescriptionId:'',
-      signDate:'',
-      signMonth:'',
-      signYear:'2026'
+      id:'',patientId:'',patientName:'',patientAge:'',patientGender:'',doctorSign:'',
+      date:'',items:[{description:'',quantity:1,unitPrice:0}],discount:0,tax:0,
+      paidAmount:0,paymentMethod:'សាច់ប្រាក់',status:'unpaid',notes:'',linkedPrescriptionId:'',
+      signDate:'',signMonth:'',signYear:'2026'
     },
     rxSearchQuery:'',
     invSearchQuery:'',
-    // Print modals
     rxPrintOpen:false,
     rxPrintData:null,
     invPrintOpen:false,
     invPrintData:null,
-    rxLinkModalOpen:false,
-    rxLinkPrescription:null,
-    // Common medicine presets
     medicinePresets:[
-      {name:'Paracetamol 500mg',dosage:'1-2 គ្រាប់',frequency:'ពេលឈឺ/3-4 ម៉ោង',duration:'5 ថ្ងៃ'},
+      {name:'Paracetamol 500mg',dosage:'1 គ្រាប់',frequency:'3 ដង/ថ្ងៃ',duration:'5 ថ្ងៃ'},
       {name:'Amoxicillin 500mg',dosage:'1 គ្រាប់',frequency:'3 ដង/ថ្ងៃ',duration:'7 ថ្ងៃ'},
       {name:'Ibuprofen 400mg',dosage:'1 គ្រាប់',frequency:'2 ដង/ថ្ងៃ',duration:'5 ថ្ងៃ'},
-      {name:'Metronidazole 500mg',dosage:'1 គ្រាប់',frequency:'3 ដង/ថ្ងៃ',duration:'7 ថ្ងៃ'},
-      {name:'ORS',dosage:'1 កញ្ចប់',frequency:'ពិសារពេលខ្វិន',duration:'តាមត្រូវការ'},
-      {name:'Vitamin C 500mg',dosage:'1 គ្រាប់',frequency:'1 ដង/ថ្ងៃ',duration:'14 ថ្ងៃ'},
-      {name:'Multivitamin',dosage:'1 គ្រាប់',frequency:'1 ដង/ថ្ងៃ',duration:'30 ថ្ងៃ'},
       {name:'Omeprazole 20mg',dosage:'1 គ្រាប់',frequency:'ព្រឹកមុនបាយ',duration:'14 ថ្ងៃ'}
-    ]
+    ],
+    // Sync States
+    syncUserId: 'កំពុងភ្ជាប់...',
+    isSyncing: false
   },
   computed:{
-    todayCount(){
-      const t=new Date().toISOString().slice(0,10);
-      return this.patients.filter(p=>{
-        if(!p.visits||!p.visits.length)return false;
-        return p.visits.some(v=>v.admitDate===t);
-      }).length;
-    },
     todayVisitCount(){
       const t=new Date().toISOString().slice(0,10);
       let c=0;
@@ -3496,8 +2693,6 @@ new Vue({
       }
       return c;
     },
-    maleCount(){return this.patients.filter(p=>p.gender==='ប្រុស').length},
-    femaleCount(){return this.patients.filter(p=>p.gender==='ស្រី').length},
     totalVisitCount(){
       let c=0;
       for(const p of this.patients){c+=(p.visits||[]).length;}
@@ -3518,16 +2713,12 @@ new Vue({
     currentVisitNumber(){
       if(this.editingVisitIndex>=0&&this.currentPatientId){
         const p=this.patients.find(x=>x.patientId===this.currentPatientId);
-        if(p&&this.editingVisitIndex<p.visits.length){
-          return this.editingVisitIndex+1;
-        }
+        if(p&&this.editingVisitIndex<p.visits.length) return this.editingVisitIndex+1;
       }
-      if(this.matchedPatient){
-        return this.matchedPatient.visits.length+1;
-      }
+      if(this.matchedPatient) return this.matchedPatient.visits.length+1;
       if(this.form.patientId){
         const p=this.patients.find(x=>x.patientId===this.form.patientId);
-        if(p){return p.visits.length+1;}
+        if(p) return p.visits.length+1;
         return 1;
       }
       return 0;
@@ -3539,10 +2730,6 @@ new Vue({
         if((p.name||'').toLowerCase().includes(q))return true;
         if((p.patientId||'').toLowerCase().includes(q))return true;
         if((p.phone||'').includes(q))return true;
-        for(const v of (p.visits||[])){
-          if((v.diagnostic||'').toLowerCase().includes(q))return true;
-          if((v.motif||'').toLowerCase().includes(q))return true;
-        }
         return false;
       });
     },
@@ -3561,25 +2748,12 @@ new Vue({
         });
       }
       if(q){
-        list=list.filter(p=>{
-          if((p.name||'').toLowerCase().includes(q))return true;
-          if((p.patientId||'').toLowerCase().includes(q))return true;
-          if((p.phone||'').includes(q))return true;
-          for(const v of (p.visits||[])){
-            if((v.diagnostic||'').toLowerCase().includes(q))return true;
-            if((v.motif||'').toLowerCase().includes(q))return true;
-            if((v.admitDate||'').toLowerCase().includes(q))return true;
-            if((v.doctorSign||'').toLowerCase().includes(q))return true;
-          }
-          return false;
-        });
+        list=list.filter(p=>
+          (p.name||'').toLowerCase().includes(q)||
+          (p.patientId||'').toLowerCase().includes(q)
+        );
       }
-      return list.sort((a,b)=>{
-        const aLast=this.getLastVisit(a).admitDate||'';
-        const bLast=this.getLastVisit(b).admitDate||'';
-        if(bLast!==aLast)return bLast.localeCompare(aLast);
-        return (b.visits||[]).length-(a.visits||[]).length;
-      });
+      return list;
     },
     totalPages(){return Math.max(1,Math.ceil(this.filteredPatients.length/this.perPage))},
     paginatedPatients(){
@@ -3592,55 +2766,20 @@ new Vue({
       if(!q)return list;
       return list.filter(t=>
         (t.patientName||'').toLowerCase().includes(q)||
-        (t.patientId||'').toLowerCase().includes(q)||
-        (t.testCategory||'').toLowerCase().includes(q)
+        (t.patientId||'').toLowerCase().includes(q)
       );
     },
-    bloodTodayCount(){
-      const t=new Date().toISOString().slice(0,10);
-      return this.bloodTests.filter(b=>b.testDate===t).length;
-    },
-    bloodAbnormalCount(){
-      return this.bloodTests.filter(b=>this.getAbnormalCount(b)>0).length;
-    },
-    bloodNormalCount(){
-      return Math.max(0,this.bloodTests.length-this.bloodAbnormalCount);
-    },
-    // Blood tests for currently linked patient
-    linkedPatientBloodTests(){
-      if(!this.linkedPatient) return [];
-      return this.bloodTests
-        .filter(bt=>bt.patientId===this.linkedPatient.patientId)
-        .sort((a,b)=>(b.testDate||'').localeCompare(a.testDate||''));
-    },
-    // Picker results
     pickerResults(){
       const q=(this.pickerSearchQuery||'').toLowerCase().trim();
       let list=this.patients.slice();
       if(q){
         list=list.filter(p=>
           (p.name||'').toLowerCase().includes(q)||
-          (p.patientId||'').toLowerCase().includes(q)||
-          (p.phone||'').includes(q)
+          (p.patientId||'').toLowerCase().includes(q)
         );
       }
-      return list.sort((a,b)=>{
-        const aLast=this.getLastVisit(a).admitDate||'';
-        const bLast=this.getLastVisit(b).admitDate||'';
-        return bLast.localeCompare(aLast);
-      });
+      return list;
     },
-    // Blood tests grouped by patient
-    bloodTestsByPatient(){
-      const map={};
-      for(const bt of this.bloodTests){
-        const key=bt.patientId||'unknown';
-        if(!map[key]) map[key]=[];
-        map[key].push(bt);
-      }
-      return map;
-    },
-    // Patients filtered for blood-by-patient view
     filteredPatientsForBlood(){
       const q=(this.bloodByPatientSearch||'').toLowerCase().trim();
       let list=this.patients.slice();
@@ -3650,57 +2789,25 @@ new Vue({
           (p.patientId||'').toLowerCase().includes(q)
         );
       }
-      return list.sort((a,b)=>this.getPatientBloodTestCount(b)-this.getPatientBloodTestCount(a));
+      return list;
     },
-    // Count of unique patients with at least 1 blood test
-    patientsWithBloodTests(){
-      const ids=new Set();
-      for(const bt of this.bloodTests){
-        if(bt.patientId) ids.add(bt.patientId);
-      }
-      return ids.size;
-    },
-    // ===== RX & INVOICE COMPUTED =====
     filteredPrescriptions(){
       const q=(this.rxSearchQuery||'').toLowerCase().trim();
-      let list=this.prescriptions.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+      let list=this.prescriptions.slice();
       if(!q)return list;
       return list.filter(rx=>
         (rx.patientName||'').toLowerCase().includes(q)||
-        (rx.patientId||'').toLowerCase().includes(q)||
-        (rx.diagnosis||'').toLowerCase().includes(q)||
-        (rx.date||'').toLowerCase().includes(q)||
-        (rx.doctorSign||'').toLowerCase().includes(q)
+        (rx.patientId||'').toLowerCase().includes(q)
       );
     },
     filteredInvoices(){
       const q=(this.invSearchQuery||'').toLowerCase().trim();
-      let list=this.invoices.slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+      let list=this.invoices.slice();
       if(!q)return list;
       return list.filter(inv=>
         (inv.patientName||'').toLowerCase().includes(q)||
-        (inv.patientId||'').toLowerCase().includes(q)||
-        (inv.date||'').toLowerCase().includes(q)||
-        (inv.status||'').toLowerCase().includes(q)||
-        (inv.paymentMethod||'').toLowerCase().includes(q)
+        (inv.patientId||'').toLowerCase().includes(q)
       );
-    },
-    totalInvoiceAmount(){
-      let s=0;
-      for(const inv of this.invoices){
-        s+=parseFloat(inv.total||0);
-      }
-      return s;
-    },
-    totalPaidAmount(){
-      let s=0;
-      for(const inv of this.invoices){
-        s+=parseFloat(inv.paidAmount||0);
-      }
-      return s;
-    },
-    unpaidInvoiceCount(){
-      return this.invoices.filter(inv=>inv.status!=='paid').length;
     }
   },
   watch:{
@@ -3716,77 +2823,23 @@ new Vue({
         this.loadBloodTests();
         this.loadPrescriptions();
         this.loadInvoices();
+        
+        // Boot Firebase Session
+        this.initFirebaseSession();
       }else{
         this.loginError='ឈ្មោះអ្នកប្រើ ឬពាក្យសម្ងាត់មិនត្រឹមត្រូវ!';
       }
     },
-    logout(){
-      if(!confirm('តើអ្នកពិតជាចង់ចាកចេញមែនទេ?'))return;
-      this.isLoggedIn=false;
-      this.currentUser='';
-      this.loginUsername='';
-      this.loginPassword='';
-      this.loginError='';
-      this.patients=[];
-    },
-    migratePatientData(rawList){
-      return rawList.map(p=>{
-        if(p.visits&&Array.isArray(p.visits)){return p;}
-        const profile={
-          name:p.name||'',age:p.age||'',gender:p.gender||'ប្រុស',
-          nationality:p.nationality||'កម្ពុជា',phone:p.phone||'',company:p.company||''
-        };
-        const visit={};
-        for(const f of VISIT_FIELDS){visit[f]=p[f]!==undefined?p[f]:'';}
-        if(!visit.woundPoints)visit.woundPoints=[];
-        return {
-          patientId:p.patientId||('P-'+Date.now().toString().slice(-6)+Math.floor(Math.random()*100)),
-          ...profile,
-          createdAt:p.admitDate||new Date().toISOString().slice(0,10),
-          visits:[visit]
-        };
-      });
-    },
-    extractProfile(p){
-      const profile={};
-      for(const f of PROFILE_FIELDS)profile[f]=p[f];
-      return profile;
-    },
-    extractVisit(p){
-      const visit={};
-      for(const f of VISIT_FIELDS)visit[f]=p[f]!==undefined?p[f]:'';
-      if(!visit.woundPoints)visit.woundPoints=[];
-      return visit;
-    },
-    buildFormFromVisit(profile,visit){
-      const f={};
-      for(const k of PROFILE_FIELDS)f[k]=profile[k]!==undefined?profile[k]:'';
-      for(const k of VISIT_FIELDS)f[k]=visit[k]!==undefined?visit[k]:'';
-      if(!f.gender)f.gender='ប្រុស';
-      if(!f.nationality)f.nationality='កម្ពុជា';
-      if(!f.signYear)f.signYear='2026';
-      return f;
-    },
-    loadPatients(){
-      try{
-        const d=localStorage.getItem('clinicPatients_v3');
-        if(d){
-          this.patients=this.migratePatientData(JSON.parse(d));
-        }else{
-          const d2=localStorage.getItem('clinicPatients_v2');
-          if(d2){
-            this.patients=this.migratePatientData(JSON.parse(d2));
-          }else{
-            this.patients=[];
-          }
-        }
-      }catch(e){
-        console.error('loadPatients error',e);
-        this.patients=[];
+    async initFirebaseSession() {
+      try {
+        await signInAnonymously(auth);
+      } catch (e) {
+        console.error("Firebase Auth failed:", e);
       }
     },
-    savePatients(){
-      localStorage.setItem('clinicPatients_v3',JSON.stringify(this.patients));
+    logout(){
+      this.isLoggedIn=false;
+      this.currentUser='';
     },
     checkReturningPatient(){
       const name=(this.form.name||'').trim().toLowerCase();
@@ -3794,7 +2847,7 @@ new Vue({
       if(!name&&!pid){this.matchedPatient=null;return;}
       const match=this.patients.find(p=>{
         if(pid&&p.patientId===pid)return true;
-        if(name&&(p.name||'').trim().toLowerCase()===name&&name.length>=2)return true;
+        if(name&&(p.name||'').trim().toLowerCase()===name)return true;
         return false;
       });
       this.matchedPatient=match||null;
@@ -3809,13 +2862,11 @@ new Vue({
     },
     getInitials(name){
       if(!name)return '?';
-      const parts=name.trim().split(/\s+/);
-      if(parts.length===1)return parts[0].charAt(0).toUpperCase();
-      return (parts[0].charAt(0)+parts[parts.length-1].charAt(0)).toUpperCase();
+      return name.trim().charAt(0).toUpperCase();
     },
     savePatient(){
       if(!this.form.patientId){
-        this.form.patientId='P-'+Date.now().toString().slice(-6)+Math.floor(Math.random()*99);
+        this.form.patientId='P-'+Date.now().toString().slice(-5);
       }
       const visit=this.extractVisit(this.form);
       const idx=this.patients.findIndex(p=>p.patientId===this.form.patientId);
@@ -3832,21 +2883,30 @@ new Vue({
         const newPatient={
           patientId:this.form.patientId,
           ...profile,
-          createdAt:visit.admitDate||new Date().toISOString().slice(0,10),
           visits:[visit]
         };
         this.patients.push(newPatient);
       }
       this.savePatients();
-      this.showSuccess();
+      this.showSuccess('រក្សាទុកជោគជ័យ!');
       this.clearForm();
     },
-    showSuccess(msg){
-      const el=document.createElement('div');
-      el.style.cssText='position:fixed;top:24px;right:24px;z-index:9999;background:linear-gradient(135deg,#059669,#10b981);color:white;padding:14px 24px;border-radius:12px;font-family:Noto Sans Khmer,sans-serif;font-size:14px;font-weight:700;box-shadow:0 8px 24px rgba(16,185,129,.4);display:flex;align-items:center;gap:10px;animation:fadeUp .3s ease both;';
-      el.innerHTML='<i class="fas fa-check-circle"></i> '+(msg||'រក្សាទុកជោគជ័យ!');
-      document.body.appendChild(el);
-      setTimeout(()=>el.remove(),3000);
+    extractProfile(p){
+      const profile={};
+      for(const f of PROFILE_FIELDS)profile[f]=p[f];
+      return profile;
+    },
+    extractVisit(p){
+      const visit={};
+      for(const f of VISIT_FIELDS)visit[f]=p[f]!==undefined?p[f]:'';
+      visit.woundPoints=(this.woundPoints||[]).slice();
+      return visit;
+    },
+    buildFormFromVisit(profile,visit){
+      const f={};
+      for(const k of PROFILE_FIELDS)f[k]=profile[k]!==undefined?profile[k]:'';
+      for(const k of VISIT_FIELDS)f[k]=visit[k]!==undefined?visit[k]:'';
+      return f;
     },
     loadPatientProfile(p){
       const last=this.getLastVisit(p);
@@ -3856,13 +2916,12 @@ new Vue({
       this.editingVisitIndex=p.visits.length-1;
       this.matchedPatient=p;
       this.activeTab='form';
-      window.scrollTo({top:0,behavior:'smooth'});
     },
     startNewVisitForExisting(p){
       this.form=this.buildFormFromVisit(this.extractProfile(p),{});
-      this.form.admitDate=new Date().toISOString().slice(0,10);
-      this.form.admitTime=new Date().toTimeString().slice(0,5);
       const d=new Date();
+      this.form.admitDate=d.toISOString().slice(0,10);
+      this.form.admitTime=d.toTimeString().slice(0,5);
       this.form.signDate=String(d.getDate()).padStart(2,'0');
       this.form.signMonth=String(d.getMonth()+1).padStart(2,'0');
       this.form.signYear=String(d.getFullYear());
@@ -3871,7 +2930,6 @@ new Vue({
       this.editingVisitIndex=-1;
       this.matchedPatient=p;
       this.activeTab='form';
-      window.scrollTo({top:0,behavior:'smooth'});
     },
     viewPatientHistory(p){
       this.historyModalPatient=p;
@@ -3890,31 +2948,16 @@ new Vue({
       this.matchedPatient=p;
       this.activeTab='form';
       this.closeHistoryModal();
-      window.scrollTo({top:0,behavior:'smooth'});
-    },
-    editVisitInForm(p,visitIdx){
-      this.viewVisitInForm(p,visitIdx);
     },
     deleteVisit(p,visitIdx){
-      if(!confirm('តើអ្នកចង់លុបកំណត់ត្រាការពិនិត្យលើកនេះមែនទេ?'))return;
       p.visits.splice(visitIdx,1);
       if(p.visits.length===0){
         this.patients=this.patients.filter(x=>x.patientId!==p.patientId);
       }
       this.savePatients();
-      if(this.historyModalPatient&&this.historyModalPatient.patientId===p.patientId){
-        this.historyModalPatient=this.patients.find(x=>x.patientId===p.patientId)||null;
-        if(!this.historyModalPatient)this.closeHistoryModal();
-      }
+      this.closeHistoryModal();
     },
     deletePatient(pid){
-      const p=this.patients.find(x=>x.patientId===pid);
-      if(!p)return;
-      const vCount=p.visits?p.visits.length:0;
-      const msg=vCount>1
-        ?'តើអ្នកចង់លុបអ្នកជំងឺ "'+p.name+'" និងកំណត់ត្រាពិនិត្យទាំង '+vCount+' ចេញមែនទេ?'
-        :'តើអ្នកចង់លុបអ្នកជំងឺនេះចេញមែនទេ?';
-      if(!confirm(msg))return;
       this.patients=this.patients.filter(x=>x.patientId!==pid);
       this.savePatients();
     },
@@ -3923,13 +2966,10 @@ new Vue({
       this.form={
         name:'',age:'',gender:'ប្រុស',nationality:'កម្ពុជា',phone:'',company:'',
         patientId:'',company2:'',admitDate:d.toISOString().slice(0,10),admitTime:d.toTimeString().slice(0,5),
-        dischargeDate:'',dischargeTime:'',
-        motif:'',histoire:'',actd:'',examenClinique:'',
-        ta:'',pouls:'',temp:'',rr:'',spo2:'',sf:'',sp:'',
-        digestive:'',respiratoire:'',cardio:'',autre:'',
-        diagnostic:'',paraclinique:'',traitement:'',
-        woundDesc:'',signDate:String(d.getDate()).padStart(2,'0'),
-        signMonth:String(d.getMonth()+1).padStart(2,'0'),
+        dischargeDate:'',dischargeTime:'',motif:'',histoire:'',actd:'',examenClinique:'',
+        ta:'',pouls:'',temp:'',rr:'',spo2:'',sf:'',sp:'',digestive:'',respiratoire:'',cardio:'',autre:'',
+        diagnostic:'',paraclinique:'',traitement:'',woundDesc:'',
+        signDate:String(d.getDate()).padStart(2,'0'),signMonth:String(d.getMonth()+1).padStart(2,'0'),
         signYear:String(d.getFullYear()),doctorSign:''
       };
       this.woundPoints=[];
@@ -3950,16 +2990,8 @@ new Vue({
       const svgY=((e.clientY-rect.top)*scaleY).toFixed(1);
       this.woundPoints.push({svgX:parseFloat(svgX),svgY:parseFloat(svgY)});
     },
+    // Lab Methods
     saveBloodTest(){
-      if(!this.bloodForm.patientName||!this.bloodForm.testDate){
-        alert('សូមបំពេញឈ្មោះអ្នកជំងឺ និងថ្ងៃពិនិត្យ');
-        return;
-      }
-      if(!this.linkedPatient){
-        this.showError('សូមជ្រើសរើសអ្នកជំងឺពីបញ្ជីជាមុនសិន');
-        this.openPatientPicker('blood');
-        return;
-      }
       if(!this.bloodForm.id){
         this.bloodForm.id='BT-'+Date.now().toString().slice(-6);
       }
@@ -3971,24 +3003,16 @@ new Vue({
         this.bloodTests.push(record);
       }
       this.saveBloodTests();
-      this.showSuccess('រក្សាទុកលទ្ធផលឈាមជោគជ័យ!');
+      this.showSuccess('លទ្ធផលឈាមរក្សាទុកជោគជ័យ!');
       this.clearBloodForm();
     },
-    showError(msg){
-      const el=document.createElement('div');
-      el.style.cssText='position:fixed;top:24px;right:24px;z-index:9999;background:linear-gradient(135deg,#b91c1c,#ef4444);color:white;padding:14px 24px;border-radius:12px;font-family:Noto Sans Khmer,sans-serif;font-size:14px;font-weight:700;box-shadow:0 8px 24px rgba(239,68,68,.4);display:flex;align-items:center;gap:10px;animation:fadeUp .3s ease both;';
-      el.innerHTML='<i class="fas fa-exclamation-circle"></i> '+msg;
-      document.body.appendChild(el);
-      setTimeout(()=>el.remove(),3500);
-    },
     openPatientPicker(source){
-      this.pickerSource=source||'blood';
+      this.pickerSource=source;
       this.pickerSearchQuery='';
       this.pickerOpen=true;
     },
     closePatientPicker(){
       this.pickerOpen=false;
-      this.pickerSearchQuery='';
     },
     selectPatientForBlood(p){
       if(this.pickerSource==='rx'){
@@ -3996,8 +3020,6 @@ new Vue({
         this.rxForm.patientName=p.name;
         this.rxForm.patientAge=p.age;
         this.rxForm.patientGender=p.gender;
-        const last=this.getLastVisit(p);
-        if(last&&last.diagnostic&&!this.rxForm.diagnosis)this.rxForm.diagnosis=last.diagnostic;
       }else if(this.pickerSource==='inv'){
         this.invoiceForm.patientId=p.patientId;
         this.invoiceForm.patientName=p.name;
@@ -4015,75 +3037,30 @@ new Vue({
       this.bloodForm.patientName='';
       this.bloodForm.patientId='';
     },
-    onPatientNameChange(){
-      if(this.linkedPatient) return;
-      const name=(this.bloodForm.patientName||'').trim().toLowerCase();
-      if(!name) return;
-      const match=this.patients.find(p=>(p.name||'').trim().toLowerCase()===name);
-      if(match){
-        this.linkedPatient=match;
-        this.bloodForm.patientId=match.patientId;
-      }
-    },
-    onPatientIdChange(){
-      if(this.linkedPatient) return;
-      const pid=(this.bloodForm.patientId||'').trim();
-      if(!pid) return;
-      const match=this.patients.find(p=>p.patientId===pid);
-      if(match){
-        this.linkedPatient=match;
-        this.bloodForm.patientName=match.name;
-      } else {
-        this.showError('រកមិនឃើញអ្នកជំងឺដែលមាន ID: '+pid+' · សូមជ្រើសរើសពីបញ្ជី');
-        this.openPatientPicker('blood');
-      }
-    },
-    viewLinkedBloodTests(){
-      if(!this.linkedPatient) return;
-      this.bloodSearchQuery=this.linkedPatient.patientId;
-      this.bloodTab='list';
-      this.showSuccess('បង្ហាញលទ្ធផលឈាមរបស់ '+this.linkedPatient.name);
-    },
     loadBloodTest(bt){
       this.bloodForm=JSON.parse(JSON.stringify(bt));
       this.bloodTab='form';
-      window.scrollTo({top:0,behavior:'smooth'});
     },
     deleteBloodTest(id){
-      if(!confirm('តើអ្នកចង់លុបលទ្ធផលឈាមនេះមែនទេ?'))return;
-      const idx=this.bloodTests.findIndex(t=>t.id===id);
-      if(idx>=0){
-        this.bloodTests.splice(idx,1);
-        this.saveBloodTests();
-      }
+      this.bloodTests=this.bloodTests.filter(t=>t.id!==id);
+      this.saveBloodTests();
     },
     clearBloodForm(){
       this.linkedPatient=null;
+      const d=new Date();
       this.bloodForm={
-        id:'',patientName:'',patientId:'',testDate:'',testCategory:'CBC',
+        id:'',patientName:'',patientId:'',testDate:d.toISOString().slice(0,10),testCategory:'CBC',
         results:{
           wbc:'',rbc:'',hgb:'',hct:'',plt:'',
-          glucose:'',hba1c:'',
-          cholesterol:'',triglyceride:'',hdl:'',ldl:'',
-          alt:'',ast:'',bilirubin:'',
-          urea:'',creatinine:'',uricAcid:''
+          glucose:'',hba1c:'',cholesterol:'',triglyceride:'',hdl:'',ldl:'',
+          alt:'',ast:'',bilirubin:'',urea:'',creatinine:'',uricAcid:''
         },
         notes:'',
-        signDate:'',signMonth:'',signYear:'2026',doctorSign:''
+        signDate:String(d.getDate()).padStart(2,'0'),signMonth:String(d.getMonth()+1).padStart(2,'0'),
+        signYear:String(d.getFullYear()),doctorSign:''
       };
     },
-    loadBloodTests(){
-      try{
-        const d=localStorage.getItem('clinicBloodTests_v1');
-        this.bloodTests=d?JSON.parse(d):[];
-      }catch(e){this.bloodTests=[]}
-    },
-    saveBloodTests(){
-      localStorage.setItem('clinicBloodTests_v1',JSON.stringify(this.bloodTests));
-    },
-    getParamsForCategory(category){
-      return BLOOD_PARAMS[category]||[];
-    },
+    getParamsForCategory(category){return BLOOD_PARAMS[category]||[]},
     getParamStatus(value,range){
       if(value===''||value===null||value===undefined)return 'none';
       const v=parseFloat(value);
@@ -4106,10 +3083,7 @@ new Vue({
       if(status==='low')return 'ទាប';
       return '—';
     },
-    getCategoryLabel(cat){
-      const labels={CBC:'CBC',Glucose:'គ្លុយកូស',Lipid:'ជាតិខ្លាញ់',Liver:'ថ្លើម',Kidney:'តម្រងនោម',Uric:'អាស៊ីតយូរីក'};
-      return labels[cat]||cat;
-    },
+    getCategoryLabel(cat){return cat},
     getAbnormalCount(bt){
       const params=BLOOD_PARAMS[bt.testCategory]||[];
       let count=0;
@@ -4119,23 +3093,14 @@ new Vue({
       }
       return count;
     },
-    // Get all blood tests for a patient (sorted newest first)
     getPatientBloodTestList(p){
       if(!p||!p.patientId) return [];
-      return this.bloodTests
-        .filter(bt=>bt.patientId===p.patientId)
-        .sort((a,b)=>(b.testDate||'').localeCompare(a.testDate||''));
+      return this.bloodTests.filter(bt=>bt.patientId===p.patientId);
     },
-    getPatientBloodTestCount(p){
-      return this.getPatientBloodTestList(p).length;
-    },
-    getLastBloodTestFor(p){
-      const list=this.getPatientBloodTestList(p);
-      return list.length>0 ? list[0] : null;
-    },
+    getPatientBloodTestCount(p){return this.getPatientBloodTestList(p).length},
     getLastBloodTestDate(p){
-      const bt=this.getLastBloodTestFor(p);
-      return bt ? bt.testDate : null;
+      const list=this.getPatientBloodTestList(p);
+      return list.length ? list[list.length-1].testDate : null;
     },
     viewPatientBloodTests(p){
       this.bloodTestDetailPatient=p;
@@ -4147,55 +3112,28 @@ new Vue({
     },
     loadBloodTestFromModal(bt){
       this.loadBloodTest(bt);
-      // Pre-link the patient
-      const p=this.patients.find(x=>x.patientId===bt.patientId);
-      if(p) this.linkedPatient=p;
+      this.linkedPatient=this.patients.find(x=>x.patientId===bt.patientId)||null;
       this.closeBloodTestDetail();
     },
     startBloodTestForPatient(p){
-      // Reset form for new blood test
       this.clearBloodForm();
-      // Pre-link the patient
       this.linkedPatient=p;
       this.bloodForm.patientName=p.name;
       this.bloodForm.patientId=p.patientId;
       this.bloodTab='form';
       this.activeTab='blood';
-      this.closeHistoryModal();
-      this.closeBloodTestDetail();
-      window.scrollTo({top:0,behavior:'smooth'});
     },
-    // ===== PRESCRIPTION METHODS =====
-    loadPrescriptions(){
-      try{
-        const d=localStorage.getItem('clinicPrescriptions_v1');
-        this.prescriptions=d?JSON.parse(d):[];
-      }catch(e){this.prescriptions=[]}
-    },
-    savePrescriptions(){
-      localStorage.setItem('clinicPrescriptions_v1',JSON.stringify(this.prescriptions));
-    },
-    loadInvoices(){
-      try{
-        const d=localStorage.getItem('clinicInvoices_v1');
-        this.invoices=d?JSON.parse(d):[];
-      }catch(e){this.invoices=[]}
-    },
-    saveInvoices(){
-      localStorage.setItem('clinicInvoices_v1',JSON.stringify(this.invoices));
-    },
+    // Prescription & Billing Methods
     addRxItem(){
       this.rxForm.items.push({medicine:'',dosage:'',frequency:'',duration:'',instructions:'',quantity:1,unitPrice:0});
     },
     removeRxItem(idx){
-      if(this.rxForm.items.length<=1)return;
       this.rxForm.items.splice(idx,1);
     },
     addInvItem(){
       this.invoiceForm.items.push({description:'',quantity:1,unitPrice:0});
     },
     removeInvItem(idx){
-      if(this.invoiceForm.items.length<=1)return;
       this.invoiceForm.items.splice(idx,1);
     },
     applyMedPreset(preset,idx){
@@ -4207,63 +3145,34 @@ new Vue({
       it.duration=preset.duration;
     },
     rxSubtotal(){
-      let s=0;
-      for(const it of this.rxForm.items){
-        const q=parseFloat(it.quantity)||0;
-        const p=parseFloat(it.unitPrice)||0;
-        s+=q*p;
-      }
-      return s;
+      return this.rxForm.items.reduce((s,it)=>s+(parseFloat(it.quantity)||0)*(parseFloat(it.unitPrice)||0),0);
     },
     invSubtotal(){
-      let s=0;
-      for(const it of this.invoiceForm.items){
-        const q=parseFloat(it.quantity)||0;
-        const p=parseFloat(it.unitPrice)||0;
-        s+=q*p;
-      }
-      return s;
+      return this.invoiceForm.items.reduce((s,it)=>s+(parseFloat(it.quantity)||0)*(parseFloat(it.unitPrice)||0),0);
     },
     invTotal(){
       const sub=this.invSubtotal();
-      const disc=parseFloat(this.invoiceForm.discount)||0;
-      const tax=parseFloat(this.invoiceForm.tax)||0;
-      return Math.max(0,sub-disc+tax);
+      return Math.max(0,sub - (parseFloat(this.invoiceForm.discount)||0) + (parseFloat(this.invoiceForm.tax)||0));
     },
     invBalance(){
-      const total=this.invTotal();
-      const paid=parseFloat(this.invoiceForm.paidAmount)||0;
-      return Math.max(0,total-paid);
+      return Math.max(0,this.invTotal() - (parseFloat(this.invoiceForm.paidAmount)||0));
     },
     invStatus(){
       const total=this.invTotal();
       const paid=parseFloat(this.invoiceForm.paidAmount)||0;
-      if(total===0)return 'unpaid';
-      if(paid<=0)return 'unpaid';
       if(paid>=total)return 'paid';
-      return 'partial';
+      if(paid>0)return 'partial';
+      return 'unpaid';
     },
     fmtMoney(n){
-      const v=parseFloat(n)||0;
-      return v.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:2})+' ៛';
+      return (n||0).toLocaleString()+' ៛';
     },
     savePrescription(){
-      if(!this.rxForm.patientName||!this.rxForm.date){
-        alert('សូមបំពេញឈ្មោះអ្នកជំងឺ និងថ្ងៃចេញវេជ្ជបញ្ជា');
-        return;
-      }
-      const validItems=this.rxForm.items.filter(it=>it.medicine&&it.medicine.trim());
-      if(!validItems.length){
-        alert('សូមបន្ថែមយ៉ាងហោចណាស់មួយថ្នាំ');
-        return;
-      }
       if(!this.rxForm.id){
-        this.rxForm.id='RX-'+Date.now().toString().slice(-6)+Math.floor(Math.random()*99);
+        this.rxForm.id='RX-'+Date.now().toString().slice(-6);
       }
       const record=JSON.parse(JSON.stringify(this.rxForm));
-      record.items=validItems;
-      record.totalAmount=validItems.reduce((s,it)=>s+(parseFloat(it.quantity)||0)*(parseFloat(it.unitPrice)||0),0);
-      record.createdAt=new Date().toISOString();
+      record.totalAmount=this.rxSubtotal();
       const idx=this.prescriptions.findIndex(p=>p.id===this.rxForm.id);
       if(idx>=0){
         this.prescriptions.splice(idx,1,record);
@@ -4276,29 +3185,15 @@ new Vue({
       this.clearRxForm();
     },
     saveInvoice(){
-      if(!this.invoiceForm.patientName||!this.invoiceForm.date){
-        alert('សូមបំពេញឈ្មោះអ្នកជំងឺ និងថ្ងៃចេញវិក្កយបត្រ');
-        return;
-      }
-      const validItems=this.invoiceForm.items.filter(it=>it.description&&it.description.trim());
-      if(!validItems.length){
-        alert('សូមបន្ថែមយ៉ាងហោចណាស់មួយទំនិញ/សេវាកម្ម');
-        return;
-      }
       if(!this.invoiceForm.id){
-        this.invoiceForm.id='INV-'+Date.now().toString().slice(-6)+Math.floor(Math.random()*99);
+        this.invoiceForm.id='INV-'+Date.now().toString().slice(-6);
       }
       const record=JSON.parse(JSON.stringify(this.invoiceForm));
-      record.items=validItems;
       record.subtotal=this.invSubtotal();
-      record.discount=parseFloat(this.invoiceForm.discount)||0;
-      record.tax=parseFloat(this.invoiceForm.tax)||0;
       record.total=this.invTotal();
-      record.paidAmount=parseFloat(this.invoiceForm.paidAmount)||0;
       record.balance=this.invBalance();
       record.status=this.invStatus();
-      record.createdAt=new Date().toISOString();
-      const idx=this.invoices.findIndex(p=>p.id===this.invoiceForm.id);
+      const idx=this.invoices.findIndex(i=>i.id===this.invoiceForm.id);
       if(idx>=0){
         this.invoices.splice(idx,1,record);
       }else{
@@ -4312,107 +3207,63 @@ new Vue({
     clearRxForm(){
       const d=new Date();
       this.rxForm={
-        id:'',
-        patientId:'',
-        patientName:'',
-        patientAge:'',
-        patientGender:'',
-        doctorSign:'',
-        diagnosis:'',
-        date:d.toISOString().slice(0,10),
-        items:[{medicine:'',dosage:'',frequency:'',duration:'',instructions:'',quantity:1,unitPrice:0}],
+        id:'',patientId:'',patientName:'',patientAge:'',patientGender:'',doctorSign:'',
+        diagnosis:'',date:d.toISOString().slice(0,10),items:[{medicine:'',dosage:'',frequency:'',duration:'',instructions:'',quantity:1,unitPrice:0}],
         notes:'',
-        signDate:String(d.getDate()).padStart(2,'0'),
-        signMonth:String(d.getMonth()+1).padStart(2,'0'),
-        signYear:String(d.getFullYear()),
-        linkedVisit:''
+        signDate:String(d.getDate()).padStart(2,'0'),signMonth:String(d.getMonth()+1).padStart(2,'0'),
+        signYear:String(d.getFullYear())
       };
     },
     clearInvForm(){
       const d=new Date();
       this.invoiceForm={
-        id:'',
-        patientId:'',
-        patientName:'',
-        patientAge:'',
-        patientGender:'',
-        doctorSign:'',
-        date:d.toISOString().slice(0,10),
-        items:[{description:'',quantity:1,unitPrice:0}],
-        discount:0,
-        tax:0,
-        paidAmount:0,
-        paymentMethod:'សាច់ប្រាក់',
-        status:'unpaid',
-        notes:'',
-        linkedPrescriptionId:'',
-        signDate:String(d.getDate()).padStart(2,'0'),
-        signMonth:String(d.getMonth()+1).padStart(2,'0'),
+        id:'',patientId:'',patientName:'',patientAge:'',patientGender:'',doctorSign:'',
+        date:d.toISOString().slice(0,10),items:[{description:'',quantity:1,unitPrice:0}],discount:0,tax:0,
+        paidAmount:0,paymentMethod:'សាច់ប្រាក់',status:'unpaid',notes:'',linkedPrescriptionId:'',
+        signDate:String(d.getDate()).padStart(2,'0'),signMonth:String(d.getMonth()+1).padStart(2,'0'),
         signYear:String(d.getFullYear())
       };
     },
     loadPrescription(rx){
       this.rxForm=JSON.parse(JSON.stringify(rx));
-      if(!this.rxForm.items||!this.rxForm.items.length){
-        this.rxForm.items=[{medicine:'',dosage:'',frequency:'',duration:'',instructions:'',quantity:1,unitPrice:0}];
-      }
       this.rxTab='rxNew';
     },
     loadInvoice(inv){
       this.invoiceForm=JSON.parse(JSON.stringify(inv));
-      if(!this.invoiceForm.items||!this.invoiceForm.items.length){
-        this.invoiceForm.items=[{description:'',quantity:1,unitPrice:0}];
-      }
-      this.invoiceTab='invNew';
+      this.rxTab='invNew';
     },
     deletePrescription(id){
-      if(!confirm('តើអ្នកចង់លុបវេជ្ជបញ្ជានេះមែនទេ?'))return;
       this.prescriptions=this.prescriptions.filter(p=>p.id!==id);
       this.savePrescriptions();
     },
     deleteInvoice(id){
-      if(!confirm('តើអ្នកចង់លុបវិក្កយបត្រនេះមែនទេ?'))return;
-      this.invoices=this.invoices.filter(p=>p.id!==id);
+      this.invoices=this.invoices.filter(i=>i.id!==id);
       this.saveInvoices();
     },
     openRxPrint(rx){
-      this.rxPrintData=JSON.parse(JSON.stringify(rx));
+      this.rxPrintData=rx;
       this.rxPrintOpen=true;
     },
     closeRxPrint(){
       this.rxPrintOpen=false;
-      this.rxPrintData=null;
     },
     openInvPrint(inv){
-      this.invPrintData=JSON.parse(JSON.stringify(inv));
+      this.invPrintData=inv;
       this.invPrintOpen=true;
     },
     closeInvPrint(){
       this.invPrintOpen=false;
-      this.invPrintData=null;
     },
-    openPatientPickerForRx(){
-      this.pickerSource='rx';
-      this.pickerSearchQuery='';
-      this.pickerOpen=true;
-    },
-    openPatientPickerForInv(){
-      this.pickerSource='inv';
-      this.pickerSearchQuery='';
-      this.pickerOpen=true;
-    },
+    openPatientPickerForRx(){this.openPatientPicker('rx')},
+    openPatientPickerForInv(){this.openPatientPicker('inv')},
     startPrescriptionForPatient(p){
       this.clearRxForm();
       this.rxForm.patientId=p.patientId;
       this.rxForm.patientName=p.name;
       this.rxForm.patientAge=p.age;
       this.rxForm.patientGender=p.gender;
-      const last=this.getLastVisit(p);
-      if(last&&last.diagnostic)this.rxForm.diagnosis=last.diagnostic;
       this.rxTab='rxNew';
       this.activeTab='rx';
-      this.closeHistoryModal();
-      window.scrollTo({top:0,behavior:'smooth'});
     },
     startInvoiceForPatient(p){
       this.clearInvForm();
@@ -4422,19 +3273,8 @@ new Vue({
       this.invoiceForm.patientGender=p.gender;
       this.rxTab='invNew';
       this.activeTab='rx';
-      this.closeHistoryModal();
-      window.scrollTo({top:0,behavior:'smooth'});
-    },
-    openRxLinkModal(rx){
-      this.rxLinkPrescription=rx;
-      this.rxLinkModalOpen=true;
-    },
-    closeRxLinkModal(){
-      this.rxLinkModalOpen=false;
-      this.rxLinkPrescription=null;
     },
     createInvoiceFromPrescription(rx){
-      this.closeRxLinkModal();
       this.clearInvForm();
       this.invoiceForm.patientId=rx.patientId;
       this.invoiceForm.patientName=rx.patientName;
@@ -4442,31 +3282,121 @@ new Vue({
       this.invoiceForm.patientGender=rx.patientGender;
       this.invoiceForm.linkedPrescriptionId=rx.id;
       this.invoiceForm.items=rx.items.map(it=>({
-        description:it.medicine+(it.dosage?' ('+it.dosage+')':''),
-        quantity:parseFloat(it.quantity)||1,
-        unitPrice:parseFloat(it.unitPrice)||0
+        description:it.medicine,
+        quantity:it.quantity,
+        unitPrice:it.unitPrice
       }));
-      this.invoiceForm.notes='ចេញពីវេជ្ជបញ្ជា '+rx.id;
       this.rxTab='invNew';
       this.activeTab='rx';
-      this.showSuccess('បានចម្លងទិន្នន័យពីវេជ្ជបញ្ជា '+rx.id);
-      window.scrollTo({top:0,behavior:'smooth'});
-    },
-    getPatientPrescriptions(p){
-      if(!p)return [];
-      return this.prescriptions
-        .filter(rx=>rx.patientId===p.patientId)
-        .sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-    },
-    getPatientInvoices(p){
-      if(!p)return [];
-      return this.invoices
-        .filter(inv=>inv.patientId===p.patientId)
-        .sort((a,b)=>(b.date||'').localeCompare(a.date||''));
     },
     invStatusLabel(s){
       return s==='paid'?'បង់រួច':s==='partial'?'បង់ខ្លះ':'មិនទាន់បង់';
+    },
+    showSuccess(msg){
+      const el=document.createElement('div');
+      el.style.cssText='position:fixed;top:24px;right:24px;z-index:9999;background:linear-gradient(135deg,#059669,#10b981);color:white;padding:14px 24px;border-radius:12px;font-family:Noto Sans Khmer,sans-serif;font-size:14px;font-weight:700;box-shadow:0 8px 24px rgba(16,185,129,.4);display:flex;align-items:center;gap:10px;animation:fadeUp .3s ease both;';
+      el.innerHTML=`<i class="fas fa-check-circle"></i> ${msg}`;
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),3000);
+    },
+    showError(msg) {
+      const el=document.createElement('div');
+      el.style.cssText='position:fixed;top:24px;right:24px;z-index:9999;background:linear-gradient(135deg,#b91c1c,#ef4444);color:white;padding:14px 24px;border-radius:12px;font-family:Noto Sans Khmer,sans-serif;font-size:14px;font-weight:700;box-shadow:0 8px 24px rgba(239,68,68,.4);display:flex;align-items:center;gap:10px;animation:fadeUp .3s ease both;';
+      el.innerHTML=`<i class="fas fa-exclamation-triangle"></i> ${msg}`;
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),3500);
+    },
+    
+    // Core Handshaking Actions (Firebase Data Bridge Operations)
+    async uploadToBridge() {
+      const user = auth.currentUser;
+      if(!user) {
+        this.showError("មិនទាន់អាចភ្ជាប់គណនី Firestore បានទេ!");
+        return;
+      }
+      this.isSyncing = true;
+      try {
+        const packageData = {
+          patients: this.patients,
+          bloodTests: this.bloodTests,
+          prescriptions: this.prescriptions,
+          invoices: this.invoices,
+          timestamp: Date.now()
+        };
+
+        const bridgeDocRef = doc(db, 'artifacts', appId, 'users', user.uid, 'sync', 'temporary_bridge');
+        await setDoc(bridgeDocRef, packageData);
+        
+        this.showSuccess("ទិន្នន័យត្រូវបានផ្ញើទៅកាន់ស្ពានចម្លងបណ្ដោះអាសន្នជោគជ័យ!");
+      } catch (e) {
+        console.error(e);
+        this.showError("ការផ្ញើទិន្នន័យបរាជ័យ!");
+      } finally {
+        this.isSyncing = false;
+      }
+    },
+    
+    async downloadFromBridge() {
+      const user = auth.currentUser;
+      if(!user) {
+        this.showError("មិនទាន់អាចភ្ជាប់គណនី Firestore បានទេ!");
+        return;
+      }
+      this.isSyncing = true;
+      try {
+        const bridgeDocRef = doc(db, 'artifacts', appId, 'users', user.uid, 'sync', 'temporary_bridge');
+        const snap = await getDoc(bridgeDocRef);
+        
+        if (!snap.exists()) {
+          this.showError("មិនមានទិន្នន័យនៅលើស្ពានចម្លង ឬត្រូវបានទាញយករួចហើយ!");
+          return;
+        }
+
+        const data = snap.data();
+        
+        if (data.patients) {
+          this.patients = data.patients;
+          this.savePatients();
+        }
+        if (data.bloodTests) {
+          this.bloodTests = data.bloodTests;
+          this.saveBloodTests();
+        }
+        if (data.prescriptions) {
+          this.prescriptions = data.prescriptions;
+          this.savePrescriptions();
+        }
+        if (data.invoices) {
+          this.invoices = data.invoices;
+          this.saveInvoices();
+        }
+
+        // AUTO-CLEANUP: Immediately destroy document once synched to keep Firestore empty
+        await deleteDoc(bridgeDocRef);
+        
+        this.showSuccess("ទាញយកទិន្នន័យជោគជ័យ! ទិន្នន័យនៅលើ Cloud ត្រូវបានសម្អាតរួចរាល់។");
+        this.$forceUpdate();
+      } catch (e) {
+        console.error(e);
+        this.showError("ការទាញយកទិន្នន័យបរាជ័យ!");
+      } finally {
+        this.isSyncing = false;
+      }
     }
+  },
+  mounted(){
+    this.clearForm();
+    this.clearBloodForm();
+    this.clearRxForm();
+    this.clearInvForm();
+    
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.syncUserId = user.uid.substring(0, 8);
+      } else {
+        this.syncUserId = "មិនទាន់ភ្ជាប់";
+      }
+    });
   }
 });
 </script>
